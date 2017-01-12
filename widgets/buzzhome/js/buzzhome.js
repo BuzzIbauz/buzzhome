@@ -127,7 +127,6 @@ vis.binds.buzzhome = {
 
 
 
-
             data.Title = data.Title || 0;
             data.actual = data.actual || 0;
             data.value = data.value || 0;
@@ -163,7 +162,8 @@ vis.binds.buzzhome = {
 
             // update WindowState
             vis.binds.buzzhome.wandthermostat.updateWindowStatus(data.windowstate);
-
+        
+            // update Mode
             vis.binds.buzzhome.wandthermostat.updateModeStatus(data.mode);
 
 
