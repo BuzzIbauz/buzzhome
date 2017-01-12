@@ -161,6 +161,7 @@ vis.binds.buzzhome = {
             // update BatteryIndicator
             vis.binds.buzzhome.wandthermostat.updateBatteryStatus(data.battery);
 
+            // update WindowState
             vis.binds.buzzhome.wandthermostat.updateWindowStatus(data.windowstate);
 
             vis.binds.buzzhome.wandthermostat.updateModeStatus(data.mode);
