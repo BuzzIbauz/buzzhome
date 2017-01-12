@@ -1,0 +1,34 @@
+{
+    "common": {
+        "name":                     "vis-buzzhome-wandthermostat",
+        "version": "0.0.1",
+        "title":                    "ioBroker Visualisation - buzzhome-wandthermostat Widgets",
+        "desc": {
+            "en":                   "buzzhome-wandthermostat Widgets for ioBroker.vis",
+            "de":                   "buzzhome-wandthermostat Widgets für ioBroker.vis",
+            "ru":                   "buzzhome-wandthermostat Widgets для ioBroker.vis"
+        },
+        "platform":                 "Javascript/Node.js",
+        "icon":                     "buzzhome-wandthermostat.png",
+        "enabled":                  true,
+        "mode":                     "once",
+        "extIcon":                  "https://github.com/ioBroker/ioBroker.js-controller/raw/master/adapter/example/admin/example.png",
+        "keywords":                 ["buzzhome-wandthermostat", "vis", "GUI", "graphical", "scada"],
+        "readme":                   "https://github.com/ioBroker/ioBroker.vis-buzzhome-wandthermostat/blob/master/README.md",
+        "authors": [
+            "ThomasBayer <thomas_bayer@gmx.net>"
+        ],
+        "localLink":                "%web_protocol%://%ip%:%web_port%/vis/edit.html",
+        "license":                  "MIT",
+        "dependencies":             ["vis"],
+        "onlyWWW":                  true,
+        "singleton":                true,
+        "type":                     "vis",
+		"restartAdapters":          ["vis"]
+    },
+    "native": {
+        "dependencies":          []
+    },
+    "instanceObjects": [
+    ]
+}
