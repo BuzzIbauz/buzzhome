@@ -45,10 +45,6 @@ vis.binds.buzzhome = {
                 return;
             }
 
-            //OnLoad function
-            //var slideAmount = $('#buzzhome-slide').attr('value');
-
-            //vis.binds.buzzhome.wandthermostat.setSliderAmountBackgroundWidth(slideAmount);
 
 
             //DataHandling
@@ -74,8 +70,6 @@ vis.binds.buzzhome = {
                     $("#buzzhome-slider").slider('value', data.value)
 
                 });
-
-
             }
 
             if (data['oid-humidity']) {
@@ -89,7 +83,7 @@ vis.binds.buzzhome = {
             if (data['oid-actual']) {
                 vis.states.bind(data['oid-actual'] + '.val', function (e, newVal, oldVal) {
                     data.actual = newVal;
-                    $('#buzzhome-TemperatureValue').html(data.actual);
+                    $('#buzzhome-TemperatureValue').html(Math.round(data.actual));
                     //console.log("value oid-actual changed - old: " + oldVal + " newValue: "+ newVal);
                 });
             }
@@ -127,6 +121,7 @@ vis.binds.buzzhome = {
 
 
 
+
             data.Title = data.Title || 0;
             data.actual = data.actual || 0;
             data.value = data.value || 0;
@@ -136,8 +131,8 @@ vis.binds.buzzhome = {
 
 
 
-            var $Title = (data.Title).toString().replace('.', ',');
-            var $Actual = (data.actual).toString().replace('.', ',');
+            var $Title = (data.Title).toString();
+            var $Actual = Math.round(data.actual);
             var $Value = (data.value).toString().replace('.', ',');
             var $Humidity = (data.humidity).toString().replace('.', ',');
             var $PrimaryColor = data.maincolor;
@@ -148,7 +143,7 @@ vis.binds.buzzhome = {
 
 
             //HTML Zeichnen
-            vis.binds.buzzhome.wandthermostat.draw($div, $Title, $Actual, $Value, $Humidity, data.windowstate, data.mode);
+            vis.binds.buzzhome.wandthermostat.draw($div, $Title, $Actual, $Value, $Humidity);
 
             //Farben zuweisen
             vis.binds.buzzhome.wandthermostat.setHighlightColor($PrimaryColor, $invertColors);
@@ -162,7 +157,7 @@ vis.binds.buzzhome = {
 
             // update WindowState
             vis.binds.buzzhome.wandthermostat.updateWindowStatus(data.windowstate);
-        
+
             // update Mode
             vis.binds.buzzhome.wandthermostat.updateModeStatus(data.mode);
 
@@ -207,9 +202,6 @@ vis.binds.buzzhome = {
             var Title = $("#buzzhome-Title");
             var TemperatureValue = $("#buzzhome-TemperatureValue");
             var SetTemperature = $("#buzzhome-SetTemperature");
-
-
-            //Jquery nachschaun
             var smallValues = $(".buzzhome-ValueSmall");
             var len = smallValues.length;
 
@@ -366,7 +358,7 @@ vis.binds.buzzhome = {
 
         },
 
-        draw: function (container, title, actual, value, humidity, windowstate, mode) {
+        draw: function (container, title, actual, value, humidity) {
             //Hier wird das HTML zusammengebaut und an den Container übergeben
             var $SetTemperatureValueHtml = '<div id="buzzhome-SetTemperatureContainer">' +
                                   '<span id="buzzhome-SetLabel" class="buzzhome-SetLabel">SET:</span>' +
@@ -382,8 +374,8 @@ vis.binds.buzzhome = {
                                 '</td>' +
                                 '<td width="50%" height="100%">' +
                                     '<span class="buzzhome-Label">Humidity: </span><span class="buzzhome-ValueSmall" id="humidity-value">' + humidity + '</span><span class="buzzhome-Label"> %</span><br>' +
-                                    '<span class="buzzhome-Label">Window: </span><span class="buzzhome-ValueSmall" id="windowstate-value">' + windowstate + '</span><br>' +
-                                    '<span class="buzzhome-Label">Mode: </span><span class="buzzhome-ValueSmall" id="mode-value">' + mode + '</span><br>' +
+                                    '<span class="buzzhome-Label">Window: </span><span class="buzzhome-ValueSmall" id="windowstate-value">undefined</span><br>' +
+                                    '<span class="buzzhome-Label">Mode: </span><span class="buzzhome-ValueSmall" id="mode-value">undefined</span><br>' +
                                 '</td>' +
                             ' </tr>' +
                          ' </table>'
