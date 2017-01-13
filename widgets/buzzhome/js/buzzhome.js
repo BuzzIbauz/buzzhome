@@ -237,8 +237,6 @@ vis.binds.buzzhome = {
 
                 Root.css("boxShadow", "0px 0px 20px" + PrimaryColor);
 
-                // $("#buzzhome-SliderAmountBackground").css("backgroundImage", "linear-gradient(" + Color2 + " 0%," + PrimaryColor + " 15%)");
-
                 $("#buzzhome-ChosenSVG").attr("fill", Color2);
 
                 $("#buzzhome-chosenValue").css("color", vis.binds.buzzhome.wandthermostat.setForegroundColor(PrimaryColor));
@@ -383,12 +381,10 @@ vis.binds.buzzhome = {
 
             var $SliderHtml = '<div id="buzzhome-SliderContainer">' +
                     '<div id="buzzhome-slider">' +
-                        //'<input id="buzzhome-slide" class="buzzhome-slide" type="range" min="12" max="30" step="1" value="' + value + '" onchange=" vis.binds.buzzhome.wandthermostat.updateSlider(this.value,' + valueoid + ')" onmousemove=" vis.binds.buzzhome.wandthermostat.updateSlider(this.value)">' +
                     '</div>' +
 
                     '<div id="buzzhome-SliderBackground"> </div>' +
 
-                    //'<div id="buzzhome-SliderAmountBackground"></div>' +
 
                     '<div id="buzzhome-chosen">' +
                         '<svg id="buzzhome-ChosenSVG" class="buzzhome-ChosenSVG" viewBox="0 0 36.154 44.077">' +
