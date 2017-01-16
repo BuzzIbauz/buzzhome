@@ -410,7 +410,154 @@ vis.binds.buzzhome = {
 
         }
 
-    }
+    },
+
+wetter: {
+
+   init: function (wid, view, data, style, wType) {
+
+            var $div = $('#' + wid).addClass('buzzhome-wetter-Root');
+            if (!$div.length) {
+                setTimeout(function () {
+                    vis.binds.buzzhome.wetter.init(wid, view, data, style, wType);
+                }, 100);
+                return;
+            }
+
+
+
+            //DataHandling
+            var _data = { wid: wid, view: view, wType: wType };
+
+            for (var a in data) {
+                if (!data.hasOwnProperty(a) || typeof data[a] == 'function') continue;
+                if (a[0] != '_') {
+                    _data[a] = data[a];
+                }
+            }
+            data = _data;
+
+            if (data.oid) {
+                data.value = vis.states.attr(data.oid + '.val');
+                data.ack = vis.states.attr(data.oid + '.ack');
+                data.lc = vis.states.attr(data.oid + '.lc');
+
+                vis.states.bind(data.oid + '.val', function (e, newVal, oldVal) {
+                    //console.log("value SetTemperature changed - old: " + oldVal + " newValue: "+ newVal);
+                    data.value = newVal
+                    $('#buzzhome-SetTemperature').html(data.value + '&ordm;C');
+                    $("#buzzhome-slider").slider('value', data.value)
+
+                });
+            }
+
+            if (data['oid-humidity']) {
+                vis.states.bind(data['oid-humidity'] + '.val', function (e, newVal, oldVal) {
+                    data.humidity = newVal;
+                    $('#humidity-value').html(data.humidity);
+                    //console.log("value oid-humidity changed - old: " + oldVal + " newValue: "+ newVal);
+                });
+            }
+
+            if (data['oid-actual']) {
+                vis.states.bind(data['oid-actual'] + '.val', function (e, newVal, oldVal) {
+                    data.actual = newVal;
+                    $('#buzzhome-TemperatureValue').html(Math.round(data.actual));
+                    //console.log("value oid-actual changed - old: " + oldVal + " newValue: "+ newVal);
+                });
+            }
+
+            if (data['oid-windowstate']) {
+                vis.states.bind(data['oid-windowstate'] + '.val', function (e, newVal, oldVal) {
+                    data.windowstate = newVal;
+                    vis.binds.buzzhome.wandthermostat.updateWindowStatus(data.windowstate);
+                    //console.log("value oid-windowstate changed - old: " + oldVal + " newValue: "+ newVal);
+                });
+            }
+
+            if (data['oid-mode']) {
+                vis.states.bind(data['oid-mode'] + '.val', function (e, newVal, oldVal) {
+                    data.mode = newVal;
+                    vis.binds.buzzhome.wandthermostat.updateModeStatus(data.mode);
+                    //console.log("value oid-mode changed - old: " + oldVal + " newValue: "+ newVal);
+                });
+            }
+
+            if (data['oid-battery']) {
+                vis.states.bind(data['oid-battery'] + '.val', function (e, newVal, oldVal) {
+                    data.battery = newVal;
+                    vis.binds.buzzhome.wandthermostat.updateBatteryStatus(data.battery);
+                    //console.log("value oid-battery changed - old: " + oldVal + " newValue: "+ newVal);
+                });
+            }
+
+
+            if (data['oid-humidity']) data.humidity = vis.states.attr(data['oid-humidity'] + '.val');
+            if (data['oid-actual']) data.actual = vis.states.attr(data['oid-actual'] + '.val');
+            if (data['oid-battery']) data.battery = vis.states.attr(data['oid-battery'] + '.val');
+            if (data['oid-windowstate']) data.windowstate = vis.states.attr(data['oid-windowstate'] + '.val');
+            if (data['oid-mode']) data.mode = vis.states.attr(data['oid-mode'] + '.val');
+
+
+
+
+            data.Title = data.Title || 0;
+            data.actual = data.actual || 0;
+            data.value = data.value || 0;
+            data.humidity = data.humidity || 0;
+
+            console.log("Title: " + data.Title + ", Humidity: " + data.humidity + ", Actual:" + data.actual + ", Battery:" + data.battery + ", Window:" + data.windowstate + ", Mode:" + data.mode);
+
+
+
+            var $Title = (data.Title).toString();
+            var $Actual = Math.round(data.actual);
+            var $Value = (data.value).toString().replace('.', ',');
+            var $Humidity = (data.humidity).toString().replace('.', ',');
+            var $PrimaryColor = data.maincolor;
+            var $invertColors = data.invertColors;
+
+
+
+
+
+            //HTML Zeichnen
+            vis.binds.buzzhome.wandthermostat.draw($div, $Title, $Actual, $Value, $Humidity);
+
+
+
+        },
+
+},
+
+
+   draw: function (container, title, actual, value, humidity) {
+            //Hier wird das HTML zusammengebaut und an den Container übergeben
+ 
+            var $TitleHtml = '<span id="buzzhome-wetter-Title" class="buzzhome-Title">' + title + '</span>';
+
+            var $TableHtml = '<table class="buzzhome-table" width="100%" height="90%">' +
+                            '<tr>' +
+                                '<td width="50%" height="100%" style="text-align:center;">' +
+                                    '<span id="buzzhome-wetter-TemperatureValue" class="buzzhome-Value" data-oid="">' + actual + '</span><span class="buzzhome-ValueSmall">&ordm;C</span>' +
+                                '</td>' +
+                                '<td width="50%" height="100%">' +
+                                    '<span class="buzzhome-Label">Humidity: </span><span class="buzzhome-ValueSmall" id="humidity-wetter-value">' + humidity + '</span><span class="buzzhome-Label"> %</span><br>' +
+                                    '<span class="buzzhome-Label">Window: </span><span class="buzzhome-ValueSmall" id="windowstate-wetter-value">undefined</span><br>' +
+                                    '<span class="buzzhome-Label">Mode: </span><span class="buzzhome-ValueSmall" id="mode-wetter-value">undefined</span><br>' +
+                                '</td>' +
+                            ' </tr>' +
+                         ' </table>'
+
+
+         
+
+
+
+            container.append($TitleHtml + $TableHtml);
+
+}
+
 }
 
 
