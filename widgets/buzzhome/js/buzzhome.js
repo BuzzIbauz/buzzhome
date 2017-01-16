@@ -416,7 +416,7 @@ wetter: {
 
    init: function (wid, view, data, style, wType) {
 
-            var $div = $('#' + wid).addClass('buzzhome-wetter-Root');
+            var $div = $('#' + wid).addClass('buzzhome-Root');
             if (!$div.length) {
                 setTimeout(function () {
                     vis.binds.buzzhome.wetter.init(wid, view, data, style, wType);
@@ -522,16 +522,13 @@ wetter: {
 
 
             //HTML Zeichnen
-            vis.binds.buzzhome.wandthermostat.draw($div, $Title, $Actual, $Value, $Humidity);
-
+            vis.binds.buzzhome.wetter.draw($div, $Title, $Actual, $Value, $Humidity);
+          
 
 
         },
 
-},
-
-
-   draw: function (container, title, actual, value, humidity) {
+        draw: function (container, title, actual, value, humidity) {
             //Hier wird das HTML zusammengebaut und an den Container übergeben
  
             var $TitleHtml = '<span id="buzzhome-wetter-Title" class="buzzhome-Title">' + title + '</span>';
@@ -559,6 +556,13 @@ wetter: {
 }
 
 }
+
+
+   
+
+}
+
+
 
 
 //button1: {
