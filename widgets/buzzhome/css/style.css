@@ -237,3 +237,11 @@
 	bottom:24px;
 	left:32px;
 	}
+
+
+#buzzhome-wetter-icon {
+    fill: #a57c34;
+    height: 180px;
+    width: 180px;
+    position: absolute;
+}

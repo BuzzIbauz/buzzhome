@@ -62,6 +62,7 @@ vis.binds.buzzhome = {
                 data.value = vis.states.attr(data.oid + '.val');
                 data.ack = vis.states.attr(data.oid + '.ack');
                 data.lc = vis.states.attr(data.oid + '.lc');
+                console.log(data.value+',' + data.ack+',' + data.lc);
 
                 vis.states.bind(data.oid + '.val', function (e, newVal, oldVal) {
                     //console.log("value SetTemperature changed - old: " + oldVal + " newValue: "+ newVal);
@@ -437,10 +438,10 @@ wetter: {
             }
             data = _data;
 
-            if (data.oid) {
-                data.value = vis.states.attr(data.oid + '.val');
-                data.ack = vis.states.attr(data.oid + '.ack');
-                data.lc = vis.states.attr(data.oid + '.lc');
+            // if (data.oid) {
+            //     data.value = vis.states.attr(data.oid + '.val');
+            //     data.ack = vis.states.attr(data.oid + '.ack');
+            //     data.lc = vis.states.attr(data.oid + '.lc');
 
                 // vis.states.bind(data.oid + '.val', function (e, newVal, oldVal) {
                 //     //console.log("value SetTemperature changed - old: " + oldVal + " newValue: "+ newVal);
@@ -449,23 +450,23 @@ wetter: {
                 //     $("#buzzhome-slider").slider('value', data.value)
 
                 // });
-            }
+            // }
 
-            if (data['oid-humidity']) {
-                vis.states.bind(data['oid-humidity'] + '.val', function (e, newVal, oldVal) {
-                    data.humidity = newVal;
-                    $('#humidity-wetter-value').html(data.humidity);
-                    //console.log("value oid-humidity changed - old: " + oldVal + " newValue: "+ newVal);
-                });
-            }
+            // if (data['oid-humidity']) {
+            //     vis.states.bind(data['oid-humidity'] + '.val', function (e, newVal, oldVal) {
+            //         data.humidity = newVal;
+            //         $('#humidity-wetter-value').html(data.humidity);
+            //         //console.log("value oid-humidity changed - old: " + oldVal + " newValue: "+ newVal);
+            //     });
+            // }
 
-            if (data['oid-actual']) {
-                vis.states.bind(data['oid-actual'] + '.val', function (e, newVal, oldVal) {
-                    data.actual = newVal;
-                    $('#buzzhome-wetter-TemperatureValue').html(Math.round(data.actual));
-                    //console.log("value oid-actual changed - old: " + oldVal + " newValue: "+ newVal);
-                });
-            }
+            // if (data['oid-actual']) {
+            //     vis.states.bind(data['oid-actual'] + '.val', function (e, newVal, oldVal) {
+            //         data.actual = newVal;
+            //         $('#buzzhome-wetter-TemperatureValue').html(Math.round(data.actual));
+            //         //console.log("value oid-actual changed - old: " + oldVal + " newValue: "+ newVal);
+            //     });
+            // }
 
             // if (data['oid-windowstate']) {
             //     vis.states.bind(data['oid-windowstate'] + '.val', function (e, newVal, oldVal) {
@@ -492,43 +493,61 @@ wetter: {
             // }
 
 
-            if (data['oid-humidity']) data.humidity = vis.states.attr(data['oid-humidity'] + '.val');
-            if (data['oid-actual']) data.actual = vis.states.attr(data['oid-actual'] + '.val');
-            if (data['oid-battery']) data.battery = vis.states.attr(data['oid-battery'] + '.val');
-            if (data['oid-windowstate']) data.windowstate = vis.states.attr(data['oid-windowstate'] + '.val');
-            if (data['oid-mode']) data.mode = vis.states.attr(data['oid-mode'] + '.val');
+            if (data['oid-aktualisierung']) data.aktualisierung = vis.states.attr(data['oid-aktualisierung'] + '.val');
+            if (data['oid-bedingung']) data.bedingung = vis.states.attr(data['oid-bedingung'] + '.val');
+            if (data['oid-luftdruck']) data.luftdruck = vis.states.attr(data['oid-luftdruck'] + '.val');
+            if (data['oid-luftdrucktrend']) data.luftdrucktrend = vis.states.attr(data['oid-luftdrucktrend'] + '.val');
+            if (data['oid-luftfeuchte']) data.luftfeuchte = vis.states.attr(data['oid-luftfeuchte'] + '.val');
+            if (data['oid-wetterstation']) data.wetterstation = vis.states.attr(data['oid-wetterstation'] + '.val');
+            if (data['oid-taupunkt']) data.taupunkt = vis.states.attr(data['oid-taupunkt'] + '.val');
+            if (data['oid-temperatur']) data.temperatur = vis.states.attr(data['oid-temperatur'] + '.val');
+            if (data['oid-uv']) data.uv = vis.states.attr(data['oid-uv'] + '.val');
+            if (data['oid-windbedingungen']) data.windbedingungen = vis.states.attr(data['oid-windbedingungen'] + '.val');
+            if (data['oid-windboeen']) data.windboeen = vis.states.attr(data['oid-windboeen'] + '.val');
+            if (data['oid-windgeschindigkeit']) data.windgeschindigkeit = vis.states.attr(data['oid-windgeschindigkeit'] + '.val');
+            if (data['oid-windrichtg']) data.windrichtg = vis.states.attr(data['oid-windrichtg'] + '.val');
+            if (data['oid-windrichtung']) data.windrichtung = vis.states.attr(data['oid-windrichtung'] + '.val');
+            if (data['oid-icon']) data.icon = vis.states.attr(data['oid-icon'] + '.val');
 
 
-
-
-            data.Title = data.Title || 0;
-            data.actual = data.actual || 0;
-            data.value = data.value || 0;
-            data.humidity = data.humidity || 0;
-
-            // console.log("Title: " + data.Title + ", Humidity: " + data.humidity + ", Actual:" + data.actual + ", Battery:" + data.battery + ", Window:" + data.windowstate + ", Mode:" + data.mode);
+             console.log(
+                "aktualisierung: " + data.aktualisierung + 
+                ", bedingung: " + data.bedingung + 
+                ", luftdruck:" + data.luftdruck + 
+                ", luftdrucktrend:" + data.luftdrucktrend + 
+                ", luftfeuchte:" + data.luftfeuchte + 
+                ", wetterstation: " + data.wetterstation + 
+                ", taupunkt:" + data.taupunkt + 
+                ", temperatur:" + data.temperatur + 
+                ", uv:" + data.uv + 
+                ", windbedingungen: " + data.windbedingungen + 
+                ", windboeen:" + data.windboeen + 
+                ", windgeschindigkeit:" + data.windgeschindigkeit + 
+                ", windrichtg:" + data.windrichtg + 
+                ", icon:" + data.icon + 
+                ", windrichtung:" + data.windrichtung);
 
 
 
             var $Title = (data.Title).toString();
-            var $Actual = Math.round(data.actual);
-            var $Value = (data.value).toString().replace('.', ',');
-            var $Humidity = (data.humidity).toString().replace('.', ',');
+            var $Temperature = Math.round(data.temperatur);
+            //var $Value = (data.value).toString().replace('.', ',');
             var $PrimaryColor = data.maincolor;
             var $invertColors = data.invertColors;
+            var iconPath = vis.binds.buzzhome.wetter.setIconPath(data.icon);
 
 
 
 
 
             //HTML Zeichnen
-            vis.binds.buzzhome.wetter.draw($div, $Title, $Actual, $Value, $Humidity);
+            vis.binds.buzzhome.wetter.draw($div, $Title, $Temperature, data.luftfeuchte, data.luftdruck, data.windgeschindigkeit, iconPath);
           
 
 
         },
 
-        draw: function (container, title, actual, value, humidity) {
+        draw: function (container, title, temperature, luftfeuchte, luftdruck, windgeschwindigkeit, iconPath) {
             //Hier wird das HTML zusammengebaut und an den Container übergeben
  
             var $TitleHtml = '<span id="buzzhome-wetter-Title" class="buzzhome-Title">' + title + '</span>';
@@ -536,24 +555,43 @@ wetter: {
             var $TableHtml = '<table class="buzzhome-table" width="100%" height="90%">' +
                             '<tr>' +
                                 '<td width="50%" height="100%" style="text-align:center;">' +
-                                    '<span id="buzzhome-wetter-TemperatureValue" class="buzzhome-Value" data-oid="">' + actual + '</span><span class="buzzhome-ValueSmall">&ordm;C</span>' +
+                                     '<svg id="buzzhome-wetter-icon" class="buzzhome-wetter-icon" viewBox="0 0 26 19.128">' +
+                                        '<path d="'+ iconPath +'" />' +
+                                     '</svg>' +
+                                    '<span id="buzzhome-wetter-TemperatureValue" class="buzzhome-Value" data-oid="">' + temperature + '</span><span class="buzzhome-ValueSmall">&ordm;C</span>' +
                                 '</td>' +
                                 '<td width="50%" height="100%">' +
-                                    '<span class="buzzhome-Label">Humidity: </span><span class="buzzhome-ValueSmall" id="humidity-wetter-value">' + humidity + '</span><span class="buzzhome-Label"> %</span><br>' +
-                                    '<span class="buzzhome-Label">Window: </span><span class="buzzhome-ValueSmall" id="windowstate-wetter-value">undefined</span><br>' +
-                                    '<span class="buzzhome-Label">Mode: </span><span class="buzzhome-ValueSmall" id="mode-wetter-value">undefined</span><br>' +
+                                    '<span class="buzzhome-Label">Humidity: </span><span class="buzzhome-ValueSmall" id="luftfeuchte-wetter-value">' + luftfeuchte + '</span><span class="buzzhome-Label"> %</span><br>' +
+                                    '<span class="buzzhome-Label">Pressure: </span><span class="buzzhome-ValueSmall" id="luftdruck-wetter-value">'+ luftdruck +'</span><span class="buzzhome-Label"> mbar</span><br>' +
+                                    '<span class="buzzhome-Label">Wind: </span><span class="buzzhome-ValueSmall" id="wind-wetter-value">'+ windgeschwindigkeit +'</span><span class="buzzhome-Label"> km/h</span><br>' +
                                 '</td>' +
                             ' </tr>' +
                          ' </table>'
 
 
-         
-
 
 
             container.append($TitleHtml + $TableHtml);
 
-}
+        },
+
+        setIconPath: function (iconKey){
+
+        
+
+         var iconPath;
+
+            switch (iconKey) {
+                case "mostlycloudy":
+                    iconPath = "M26,15.915c0,1.774-1.438,3.212-3.212,3.212H16.72h-6.068c-1.774,0-3.212-1.438-3.212-3.212c0-1.128,0.584-2.116,1.463-2.689c-0.021-0.172-0.035-0.346-0.035-0.523c0-2.366,1.918-4.283,4.283-4.283c0.864,0,1.666,0.258,2.339,0.698c0.904-1.284,2.396-2.125,4.086-2.125c0.183,0,0.356,0.035,0.533,0.054c0.028-0.197,0.045-0.392,0.045-0.584c0-2.46-2.001-4.462-4.462-4.462c-1.446,0-2.81,0.71-3.648,1.9l-1.112,1.58L9.315,4.422c-0.577-0.377-1.244-0.576-1.93-0.576c-1.951,0-3.539,1.587-3.539,3.538c0,0.125,0.01,0.263,0.031,0.434l0.151,1.237L2.984,9.737C2.368,10.138,2,10.812,2,11.538c0,1.188,0.966,2.154,2.154,2.154h2.194c-0.509,0.525-0.824,1.225-0.879,2H4.154C1.86,15.692,0,13.833,0,11.538c0-1.458,0.755-2.736,1.892-3.477C1.864,7.839,1.846,7.614,1.846,7.385c0-3.059,2.48-5.538,5.539-5.538c1.117,0,2.155,0.333,3.025,0.902C11.579,1.088,13.507,0,15.692,0c3.569,0,6.462,2.893,6.462,6.462c0,0.411-0.052,0.808-0.128,1.198c1.513,0.859,2.546,2.466,2.546,4.33c0,0.406-0.054,0.799-0.145,1.177C25.365,13.727,26,14.743,26,15.915z";
+                    break;
+              
+                default:
+                     iconPath = "M26,15.915c0,1.774-1.438,3.212-3.212,3.212H16.72h-6.068c-1.774,0-3.212-1.438-3.212-3.212c0-1.128,0.584-2.116,1.463-2.689c-0.021-0.172-0.035-0.346-0.035-0.523c0-2.366,1.918-4.283,4.283-4.283c0.864,0,1.666,0.258,2.339,0.698c0.904-1.284,2.396-2.125,4.086-2.125c0.183,0,0.356,0.035,0.533,0.054c0.028-0.197,0.045-0.392,0.045-0.584c0-2.46-2.001-4.462-4.462-4.462c-1.446,0-2.81,0.71-3.648,1.9l-1.112,1.58L9.315,4.422c-0.577-0.377-1.244-0.576-1.93-0.576c-1.951,0-3.539,1.587-3.539,3.538c0,0.125,0.01,0.263,0.031,0.434l0.151,1.237L2.984,9.737C2.368,10.138,2,10.812,2,11.538c0,1.188,0.966,2.154,2.154,2.154h2.194c-0.509,0.525-0.824,1.225-0.879,2H4.154C1.86,15.692,0,13.833,0,11.538c0-1.458,0.755-2.736,1.892-3.477C1.864,7.839,1.846,7.614,1.846,7.385c0-3.059,2.48-5.538,5.539-5.538c1.117,0,2.155,0.333,3.025,0.902C11.579,1.088,13.507,0,15.692,0c3.569,0,6.462,2.893,6.462,6.462c0,0.411-0.052,0.808-0.128,1.198c1.513,0.859,2.546,2.466,2.546,4.33c0,0.406-0.054,0.799-0.145,1.177C25.365,13.727,26,14.743,26,15.915z";
+            }
+
+            return iconPath
+        }
 
 }
 
