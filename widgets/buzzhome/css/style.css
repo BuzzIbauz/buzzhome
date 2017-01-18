@@ -24,7 +24,7 @@
 .buzzhome-ValueSmall {
     color:#a57c34;
     font-family:"OpenSans-CondLight";
-    font-size:40pt;
+    font-size:28pt;
 	}
 	
 .buzzhome-Value {
@@ -36,19 +36,19 @@
 .buzzhome-Label {
     color:#b2b2b2;
     font-family:"RobotoCondensed-Light";
-    font-size:30pt;
+    font-size:28pt;
     }
 
 .buzzhome-SetLabel {
     color:#b2b2b2;
     font-family:"RobotoCondensed-Light";
-    font-size:30pt;
+    font-size:28pt;
     }
 	
 .buzzhome-SetTemperature {
     color:#a57c34;
     font-family:"OpenSans-CondLight";
-    font-size:30pt;
+    font-size:28pt;
     }
 
 
@@ -213,7 +213,7 @@
 	background:#FFFFFF;
 	width:670px;
 	height:335px;
-	box-shadow:0px 0px 20px #a57c34;
+	box-shadow:0px 0px 15px rgba(165, 124, 52, 0.20);
 	}
 
 .buzzhome-ChosenSVG {
@@ -240,8 +240,7 @@
 
 
 #buzzhome-wetter-icon {
-    fill: #a57c34;
-    height: 180px;
-    width: 180px;
-    position: absolute;
-}
+	fill: #a57c34;
+    height: 100px;
+    width: 100px;
+	}
