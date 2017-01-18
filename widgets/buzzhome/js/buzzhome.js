@@ -571,7 +571,7 @@ vis.binds.buzzhome = {
 
             var $ForecastContainerHtml = '<div id="ForeCastContainer" style="width:100%; height:32px;" >' +
                 '<table style="text-align:center; border-collapse: separate; border-spacing: 0px; " width="100% " height="34px">' +
-                '< tr >' +
+                '<tr>' +
                 '<td style="background-color:rgba(165, 124, 52, 0.40);">' +
                 '<span class="buzzhome-forecast-Label">Mon</span>' +
                 '<svg id="buzzhome-forecast-icon1" class="buzzhome-forecast-icon" viewBox="0 0 26 26">' +

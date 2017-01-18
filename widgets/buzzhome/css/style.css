@@ -239,8 +239,27 @@
 	}
 
 
+
+
+
+
+/*++++++++++++++++++++++Wetter++++++++++++++++*/
+
 #buzzhome-wetter-icon {
 	fill: #a57c34;
     height: 100px;
     width: 100px;
 	}
+
+.buzzhome-forecast-icon {
+	fill: #a57c34;
+    height: 24px;
+    width: 24px;
+	vertical-align: middle;
+	}
+
+.buzzhome-forecast-Label {
+    color:#ffffff;
+    font-family:"RobotoCondensed-Light";
+    font-size:15pt;
+    }
