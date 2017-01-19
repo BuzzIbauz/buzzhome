@@ -164,6 +164,7 @@
 .buzzhome-table {
     border-collapse: separate;
     border-spacing: 0px;
+	margin-bottom: -32px
 	}
 	
 #buzzhome-chosen {
@@ -251,15 +252,44 @@
     width: 100px;
 	}
 
-.buzzhome-forecast-icon {
+
+#buzzhome-forecast-icon1 {
 	fill: #a57c34;
     height: 24px;
     width: 24px;
 	vertical-align: middle;
 	}
 
+	#buzzhome-forecast-icon2 {
+	fill: #a57c34;
+    height: 24px;
+    width: 24px;
+	vertical-align: middle;
+	}
+
+	#buzzhome-forecast-icon3 {
+	fill: #a57c34;
+    height: 24px;
+    width: 24px;
+	vertical-align: middle;
+	}
+
+	#buzzhome-forecast-icon4 {
+	fill: #a57c34;
+    height: 24px;
+    width: 24px;
+	vertical-align: middle;
+	}
+
+	#buzzhome-windrotate-icon {
+	fill: #a57c34;
+    height: 24px;
+    width: 24px;
+	}
+
 .buzzhome-forecast-Label {
     color:#ffffff;
     font-family:"RobotoCondensed-Light";
-    font-size:15pt;
+    font-size:13pt;
+	vertical-align: middle;
     }

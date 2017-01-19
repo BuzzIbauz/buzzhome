@@ -366,7 +366,7 @@ vis.binds.buzzhome = {
 
             var $TitleHtml = '<span id="buzzhome-Title" class="buzzhome-Title">' + title + '</span>';
 
-            var $TableHtml = '<table class="buzzhome-table" width="100%" height="90%">' +
+            var $TableHtml = '<table class="buzzhome-table" width="100%" height="100%">' +
                 '<tr>' +
                 '<td width="50%" height="100%" style="text-align:center;">' +
                 '<span id="buzzhome-TemperatureValue" class="buzzhome-Value" data-oid="">' + actual + '</span><span class="buzzhome-ValueSmall">&ordm;C</span>' +
@@ -531,6 +531,7 @@ vis.binds.buzzhome = {
 
             var $Title = (data.Title).toString();
             var $Temperature = Math.round(data.temperatur);
+            var $Taupunkt = Math.round(data.taupunkt);
             //var $Value = (data.value).toString().replace('.', ',');
             var $PrimaryColor = data.maincolor;
             var $invertColors = data.invertColors;
@@ -541,18 +542,18 @@ vis.binds.buzzhome = {
 
 
             //HTML Zeichnen
-            vis.binds.buzzhome.wetter.draw($div, $Title, $Temperature, data.luftfeuchte, data.luftdruck, data.windgeschindigkeit, iconPath);
+            vis.binds.buzzhome.wetter.draw($div, $Title, $Temperature, data.luftfeuchte, data.luftdruck, data.windgeschindigkeit, $Taupunkt, iconPath);
 
 
 
         },
 
-        draw: function (container, title, temperature, luftfeuchte, luftdruck, windgeschwindigkeit, iconPath) {
+        draw: function (container, title, temperature, luftfeuchte, luftdruck, windgeschwindigkeit, taupunkt, iconPath) {
             //Hier wird das HTML zusammengebaut und an den Container übergeben
 
             var $TitleHtml = '<span id="buzzhome-wetter-Title" class="buzzhome-Title">' + title + '</span>';
 
-            var $TableHtml = '<table class="buzzhome-table" width="100%" height="90%">' +
+            var $TableHtml = '<table class="buzzhome-table" width="100%" height="100%">' +
                 '<tr>' +
                 '<td width="50%" height="100%" style="text-align:center;">' +
                 '<svg id="buzzhome-wetter-icon" class="buzzhome-wetter-icon" viewBox="0 0 26 19.128">' +
@@ -563,18 +564,24 @@ vis.binds.buzzhome = {
                 '<td width="50%" height="100%">' +
                 '<span class="buzzhome-Label">Humidity: </span><span class="buzzhome-ValueSmall" id="luftfeuchte-wetter-value">' + luftfeuchte + '</span><span class="buzzhome-Label"> %</span><br>' +
                 '<span class="buzzhome-Label">Pressure: </span><span class="buzzhome-ValueSmall" id="luftdruck-wetter-value">' + luftdruck + '</span><span class="buzzhome-Label"> mbar</span><br>' +
-                '<span class="buzzhome-Label">Wind: </span><span class="buzzhome-ValueSmall" id="wind-wetter-value">' + windgeschwindigkeit + '</span><span class="buzzhome-Label"> km/h</span><br>' +
-                '<span class="buzzhome-Label">Wind: </span><span class="buzzhome-ValueSmall" id="wind-wetter-value">' + windgeschwindigkeit + '</span><span class="buzzhome-Label"> km/h</span><br>' +
+                '<span class="buzzhome-Label">Wind: </span><span class="buzzhome-ValueSmall" id="wind-wetter-value">' + windgeschwindigkeit + '</span><span class="buzzhome-Label"> km/h</span>' +
+                 '<svg id="buzzhome-windrotate-icon" viewBox="0 0 26 26">' +
+                '<path d="M25.56,51.12L0,85.56L25.56,0l25.56,85.56L25.56,51.12z" />' +
+                '</svg></br>' +
+                '<span class="buzzhome-Label">Dewpoint: </span><span class="buzzhome-ValueSmall" id="wind-wetter-value">' + taupunkt + '</span><span class="buzzhome-Label"> °C</span><br>' +
                 '</td>' +
                 ' </tr>' +
                 ' </table>';
 
-            var $ForecastContainerHtml = '<div id="ForeCastContainer" style="width:100%; height:32px;" >' +
-                '<table style="text-align:center; border-collapse: separate; border-spacing: 0px; " width="100% " height="34px">' +
+              
+
+
+            var $ForecastContainerHtml = '<div id="buzzhome-forecast-container" style="width:100%; height:32px;" >' +
+                '<table style="text-align:center; border-collapse: separate; border-spacing: 0px; " width="100% " height="32px">' +
                 '<tr>' +
                 '<td style="background-color:rgba(165, 124, 52, 0.40);">' +
                 '<span class="buzzhome-forecast-Label">Mon</span>' +
-                '<svg id="buzzhome-forecast-icon1" class="buzzhome-forecast-icon" viewBox="0 0 26 26">' +
+                '<svg id="buzzhome-forecast-icon1" viewBox="0 0 26 26">' +
                 '<path d="M24,20.538C24,22.45,22.45,24,20.538,24H14H7.462C5.55,24,4,22.45,4,20.538c0-1.215,0.629-2.28,1.576-2.898c-0.023-0.185-0.038-0.373-0.038-0.564c0-1.07,0.379-2.042,0.989-2.824C6.343,14.04,6.167,13.82,6.019,13.58l-4.676,2.885c-0.505-0.82-0.901-1.7-1.176-2.617l5.269-1.578c-0.269-0.895-0.317-1.868-0.087-2.842L0,8.162C0.217,7.248,0.554,6.346,1.021,5.48l4.842,2.61C6.327,7.228,7.002,6.518,7.81,6.019L4.925,1.343c0.82-0.505,1.7-0.901,2.617-1.176L9.12,5.435c0.895-0.269,1.868-0.317,2.842-0.087L13.229,0c0.914,0.217,1.815,0.554,2.682,1.021L13.3,5.863c0.862,0.464,1.573,1.139,2.071,1.948l4.676-2.885c0.505,0.82,0.901,1.7,1.176,2.617L15.955,9.12c0.181,0.602,0.246,1.241,0.209,1.891c0.004-0.001,0.007-0.002,0.011-0.003c-0.002,0.028-0.008,0.055-0.01,0.084c-0.002,0.023,0.003,0.044,0.001,0.067c-0.003,0.031-0.002,0.064-0.006,0.095c-0.01,0.094-0.032,0.188-0.047,0.282c-0.008,0.051-0.016,0.103-0.026,0.153c-0.012,0.061-0.017,0.123-0.031,0.184c-0.011,0.048-0.018,0.096-0.03,0.143l-0.016,0.003c-0.116,0.458-0.283,0.895-0.507,1.298c-0.468,0.247-0.88,0.602-1.193,1.048l-1.112,1.58l-1.617-1.057c-0.426-0.279-0.919-0.426-1.426-0.426c-1.442,0-2.615,1.173-2.615,2.615c0,0.089,0.008,0.194,0.023,0.321l0.151,1.237l-1.044,0.681C6.25,19.589,6,20.046,6,20.538C6,21.344,6.656,22,7.462,22H14h6.538C21.344,22,22,21.344,22,20.538c0-0.51-0.27-0.975-0.721-1.245l-1.264-0.756l0.346-1.432c0.068-0.279,0.1-0.54,0.1-0.798c0-1.613-1.136-2.962-2.649-3.299c0.209-0.624,0.33-1.286,0.364-1.972c2.446,0.508,4.285,2.674,4.285,5.271c0,0.438-0.058,0.861-0.157,1.269C23.316,18.181,24,19.275,24,20.538z" />' +
                 '</svg>' +
                 '<span class="buzzhome-forecast-Label">27°C</span>' +
@@ -583,16 +590,16 @@ vis.binds.buzzhome = {
 
                 '<td style="background-color:rgba(165, 124, 52, 0.35);">' +
                 ' <span class="buzzhome-forecast-Label">Thue</span>' +
-                '<svg id="buzzhome-forecast-icon2" class="buzzhome-forecast-icon" viewBox="0 0 26 26">' +
+                '<svg id="buzzhome-forecast-icon2" viewBox="0 0 26 26">' +
                 '<path d="M24,20.538C24,22.45,22.45,24,20.538,24H14H7.462C5.55,24,4,22.45,4,20.538c0-1.215,0.629-2.28,1.576-2.898c-0.023-0.185-0.038-0.373-0.038-0.564c0-1.07,0.379-2.042,0.989-2.824C6.343,14.04,6.167,13.82,6.019,13.58l-4.676,2.885c-0.505-0.82-0.901-1.7-1.176-2.617l5.269-1.578c-0.269-0.895-0.317-1.868-0.087-2.842L0,8.162C0.217,7.248,0.554,6.346,1.021,5.48l4.842,2.61C6.327,7.228,7.002,6.518,7.81,6.019L4.925,1.343c0.82-0.505,1.7-0.901,2.617-1.176L9.12,5.435c0.895-0.269,1.868-0.317,2.842-0.087L13.229,0c0.914,0.217,1.815,0.554,2.682,1.021L13.3,5.863c0.862,0.464,1.573,1.139,2.071,1.948l4.676-2.885c0.505,0.82,0.901,1.7,1.176,2.617L15.955,9.12c0.181,0.602,0.246,1.241,0.209,1.891c0.004-0.001,0.007-0.002,0.011-0.003c-0.002,0.028-0.008,0.055-0.01,0.084c-0.002,0.023,0.003,0.044,0.001,0.067c-0.003,0.031-0.002,0.064-0.006,0.095c-0.01,0.094-0.032,0.188-0.047,0.282c-0.008,0.051-0.016,0.103-0.026,0.153c-0.012,0.061-0.017,0.123-0.031,0.184c-0.011,0.048-0.018,0.096-0.03,0.143l-0.016,0.003c-0.116,0.458-0.283,0.895-0.507,1.298c-0.468,0.247-0.88,0.602-1.193,1.048l-1.112,1.58l-1.617-1.057c-0.426-0.279-0.919-0.426-1.426-0.426c-1.442,0-2.615,1.173-2.615,2.615c0,0.089,0.008,0.194,0.023,0.321l0.151,1.237l-1.044,0.681C6.25,19.589,6,20.046,6,20.538C6,21.344,6.656,22,7.462,22H14h6.538C21.344,22,22,21.344,22,20.538c0-0.51-0.27-0.975-0.721-1.245l-1.264-0.756l0.346-1.432c0.068-0.279,0.1-0.54,0.1-0.798c0-1.613-1.136-2.962-2.649-3.299c0.209-0.624,0.33-1.286,0.364-1.972c2.446,0.508,4.285,2.674,4.285,5.271c0,0.438-0.058,0.861-0.157,1.269C23.316,18.181,24,19.275,24,20.538z" />' +
-            '  </svg>' +
+                '  </svg>' +
                 '  <span class="buzzhome-forecast-Label">27°C</span>' +
                 '  <span class="buzzhome-forecast-Label">12°C</span>' +
                 '  </td>' +
 
                 '  <td style="background-color:rgba(165, 124, 52, 0.25);">' +
                 '  <span class="buzzhome-forecast-Label">Wed</span>' +
-                '  <svg id="buzzhome-forecast-icon3" class="buzzhome-forecast-icon" viewBox="0 0 26 26">' +
+                '  <svg id="buzzhome-forecast-icon3" viewBox="0 0 26 26">' +
                 '     <path d="M24,20.538C24,22.45,22.45,24,20.538,24H14H7.462C5.55,24,4,22.45,4,20.538c0-1.215,0.629-2.28,1.576-2.898c-0.023-0.185-0.038-0.373-0.038-0.564c0-1.07,0.379-2.042,0.989-2.824C6.343,14.04,6.167,13.82,6.019,13.58l-4.676,2.885c-0.505-0.82-0.901-1.7-1.176-2.617l5.269-1.578c-0.269-0.895-0.317-1.868-0.087-2.842L0,8.162C0.217,7.248,0.554,6.346,1.021,5.48l4.842,2.61C6.327,7.228,7.002,6.518,7.81,6.019L4.925,1.343c0.82-0.505,1.7-0.901,2.617-1.176L9.12,5.435c0.895-0.269,1.868-0.317,2.842-0.087L13.229,0c0.914,0.217,1.815,0.554,2.682,1.021L13.3,5.863c0.862,0.464,1.573,1.139,2.071,1.948l4.676-2.885c0.505,0.82,0.901,1.7,1.176,2.617L15.955,9.12c0.181,0.602,0.246,1.241,0.209,1.891c0.004-0.001,0.007-0.002,0.011-0.003c-0.002,0.028-0.008,0.055-0.01,0.084c-0.002,0.023,0.003,0.044,0.001,0.067c-0.003,0.031-0.002,0.064-0.006,0.095c-0.01,0.094-0.032,0.188-0.047,0.282c-0.008,0.051-0.016,0.103-0.026,0.153c-0.012,0.061-0.017,0.123-0.031,0.184c-0.011,0.048-0.018,0.096-0.03,0.143l-0.016,0.003c-0.116,0.458-0.283,0.895-0.507,1.298c-0.468,0.247-0.88,0.602-1.193,1.048l-1.112,1.58l-1.617-1.057c-0.426-0.279-0.919-0.426-1.426-0.426c-1.442,0-2.615,1.173-2.615,2.615c0,0.089,0.008,0.194,0.023,0.321l0.151,1.237l-1.044,0.681C6.25,19.589,6,20.046,6,20.538C6,21.344,6.656,22,7.462,22H14h6.538C21.344,22,22,21.344,22,20.538c0-0.51-0.27-0.975-0.721-1.245l-1.264-0.756l0.346-1.432c0.068-0.279,0.1-0.54,0.1-0.798c0-1.613-1.136-2.962-2.649-3.299c0.209-0.624,0.33-1.286,0.364-1.972c2.446,0.508,4.285,2.674,4.285,5.271c0,0.438-0.058,0.861-0.157,1.269C23.316,18.181,24,19.275,24,20.538z" />' +
                 '  </svg>' +
                 '  <span class="buzzhome-forecast-Label">27°C</span>' +
@@ -600,7 +607,7 @@ vis.binds.buzzhome = {
                 '  </td>' +
                 '  <td style="background-color:rgba(165, 124, 52, 0.15);">' +
                 '  <span class="buzzhome-forecast-Label">Thur</span>' +
-                '  <svg id="buzzhome-forecast-icon4" class="buzzhome-forecast-icon" viewBox="0 0 26 26">' +
+                '  <svg id="buzzhome-forecast-icon4" viewBox="0 0 26 26">' +
                 '<path d="M24,20.538C24,22.45,22.45,24,20.538,24H14H7.462C5.55,24,4,22.45,4,20.538c0-1.215,0.629-2.28,1.576-2.898c-0.023-0.185-0.038-0.373-0.038-0.564c0-1.07,0.379-2.042,0.989-2.824C6.343,14.04,6.167,13.82,6.019,13.58l-4.676,2.885c-0.505-0.82-0.901-1.7-1.176-2.617l5.269-1.578c-0.269-0.895-0.317-1.868-0.087-2.842L0,8.162C0.217,7.248,0.554,6.346,1.021,5.48l4.842,2.61C6.327,7.228,7.002,6.518,7.81,6.019L4.925,1.343c0.82-0.505,1.7-0.901,2.617-1.176L9.12,5.435c0.895-0.269,1.868-0.317,2.842-0.087L13.229,0c0.914,0.217,1.815,0.554,2.682,1.021L13.3,5.863c0.862,0.464,1.573,1.139,2.071,1.948l4.676-2.885c0.505,0.82,0.901,1.7,1.176,2.617L15.955,9.12c0.181,0.602,0.246,1.241,0.209,1.891c0.004-0.001,0.007-0.002,0.011-0.003c-0.002,0.028-0.008,0.055-0.01,0.084c-0.002,0.023,0.003,0.044,0.001,0.067c-0.003,0.031-0.002,0.064-0.006,0.095c-0.01,0.094-0.032,0.188-0.047,0.282c-0.008,0.051-0.016,0.103-0.026,0.153c-0.012,0.061-0.017,0.123-0.031,0.184c-0.011,0.048-0.018,0.096-0.03,0.143l-0.016,0.003c-0.116,0.458-0.283,0.895-0.507,1.298c-0.468,0.247-0.88,0.602-1.193,1.048l-1.112,1.58l-1.617-1.057c-0.426-0.279-0.919-0.426-1.426-0.426c-1.442,0-2.615,1.173-2.615,2.615c0,0.089,0.008,0.194,0.023,0.321l0.151,1.237l-1.044,0.681C6.25,19.589,6,20.046,6,20.538C6,21.344,6.656,22,7.462,22H14h6.538C21.344,22,22,21.344,22,20.538c0-0.51-0.27-0.975-0.721-1.245l-1.264-0.756l0.346-1.432c0.068-0.279,0.1-0.54,0.1-0.798c0-1.613-1.136-2.962-2.649-3.299c0.209-0.624,0.33-1.286,0.364-1.972c2.446,0.508,4.285,2.674,4.285,5.271c0,0.438-0.058,0.861-0.157,1.269C23.316,18.181,24,19.275,24,20.538z" />' +
             '   </svg>' +
                 '   <span class="buzzhome-forecast-Label">27°C</span>' +
