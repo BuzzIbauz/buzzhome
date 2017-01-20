@@ -282,9 +282,26 @@
 	}
 
 	#buzzhome-windrotate-icon {
-	fill: #a57c34;
-    height: 24px;
-    width: 24px;
+	height:28px; 
+	width:28px; 
+	fill: #a57c34; 
+	position:absolute;
+	}
+
+	#buzzhome-windrose {
+	height:28px; 
+	fill: #b2b2b2; 
+	width:28px; 
+	position:absolute;
+	}
+
+	#buzzhome-windrotate-container {
+	height: 28px;
+	width: 28px;
+	vertical-align: middle;
+    position: absolute;
+    margin-top: 13px;
+    margin-left: 18px;
 	}
 
 .buzzhome-forecast-Label {

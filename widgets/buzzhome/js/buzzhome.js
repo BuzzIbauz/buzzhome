@@ -541,11 +541,18 @@ vis.binds.buzzhome = {
 
 
 
+            
             //HTML Zeichnen
             vis.binds.buzzhome.wetter.draw($div, $Title, $Temperature, data.luftfeuchte, data.luftdruck, data.windgeschindigkeit, $Taupunkt, iconPath);
 
+//Windrose
+            vis.binds.buzzhome.wetter.setWindDirection(data.windrichtg);
 
+        },
 
+        setWindDirection: function (windrichtung) {
+            $("#buzzhome-windrotate-icon").css("transform", "rotate(" + windrichtung + "deg)");
+            console.log("test");
         },
 
         draw: function (container, title, temperature, luftfeuchte, luftdruck, windgeschwindigkeit, taupunkt, iconPath) {
@@ -556,7 +563,7 @@ vis.binds.buzzhome = {
             var $TableHtml = '<table class="buzzhome-table" width="100%" height="100%">' +
                 '<tr>' +
                 '<td width="50%" height="100%" style="text-align:center;">' +
-                '<svg id="buzzhome-wetter-icon" class="buzzhome-wetter-icon" viewBox="0 0 26 19.128">' +
+                '<svg id="buzzhome-wetter-icon" class="buzzhome-wetter-icon" viewBox="0 0 26 26">' +
                 '<path d="' + iconPath + '" />' +
                 '</svg><br/>' +
                 ' <span id="buzzhome-wetter-city" class="buzzhome-Label">Strassgang</span> <br /> <span id="buzzhome-wetter-TemperatureValue" class="buzzhome-ValueSmall">' + temperature + '</span><span class="buzzhome-ValueSmall">&ordm;C</span>' +
@@ -565,7 +572,12 @@ vis.binds.buzzhome = {
                 '<span class="buzzhome-Label">Humidity: </span><span class="buzzhome-ValueSmall" id="luftfeuchte-wetter-value">' + luftfeuchte + '</span><span class="buzzhome-Label"> %</span><br>' +
                 '<span class="buzzhome-Label">Pressure: </span><span class="buzzhome-ValueSmall" id="luftdruck-wetter-value">' + luftdruck + '</span><span class="buzzhome-Label"> mbar</span><br>' +
                 '<span class="buzzhome-Label">Wind: </span><span class="buzzhome-ValueSmall" id="wind-wetter-value">' + windgeschwindigkeit + '</span><span class="buzzhome-Label"> km/h</span>' +
-                 '<svg id="buzzhome-windrotate-icon" viewBox="0 0 26 26">' +
+                '   <span id="buzzhome-windrotate-container">' +
+                ' <svg id="buzzhome-windrose" viewBox="0 0 26 26">' +
+                ' <path d="M13,0C5.82,0,0,5.82,0,13s5.82,13,13,13s13-5.82,13-13S20.18,0,13,0zM13.984,23.953L13,21l-0.983,2.95c-5.281-0.471-9.496-4.686-9.967-9.967L5,13l-2.95-0.983c0.471-5.281,4.686-9.496,9.967-9.967L13,5l0.984-2.953c5.28,0.471,9.495,4.688,9.966,9.969L21,13l2.95,0.983C23.479,19.264,19.265,23.482,13.984,23.953z" /></svg>' +
+                '<svg id="buzzhome-windrotate-icon" viewBox="0 0 6 24">' +
+                '<path d="M6,12L3,24L0,12l1.5-6l0.75,3L1.5,12h3L4,10L3,6L2.25,3L3,0L6,12z" /> </svg>' +
+                '</span>' +
                 '<path d="M25.56,51.12L0,85.56L25.56,0l25.56,85.56L25.56,51.12z" />' +
                 '</svg></br>' +
                 '<span class="buzzhome-Label">Dewpoint: </span><span class="buzzhome-ValueSmall" id="wind-wetter-value">' + taupunkt + '</span><span class="buzzhome-Label"> °C</span><br>' +
@@ -573,7 +585,7 @@ vis.binds.buzzhome = {
                 ' </tr>' +
                 ' </table>';
 
-              
+
 
 
             var $ForecastContainerHtml = '<div id="buzzhome-forecast-container" style="width:100%; height:32px;" >' +
@@ -609,7 +621,7 @@ vis.binds.buzzhome = {
                 '  <span class="buzzhome-forecast-Label">Thur</span>' +
                 '  <svg id="buzzhome-forecast-icon4" viewBox="0 0 26 26">' +
                 '<path d="M24,20.538C24,22.45,22.45,24,20.538,24H14H7.462C5.55,24,4,22.45,4,20.538c0-1.215,0.629-2.28,1.576-2.898c-0.023-0.185-0.038-0.373-0.038-0.564c0-1.07,0.379-2.042,0.989-2.824C6.343,14.04,6.167,13.82,6.019,13.58l-4.676,2.885c-0.505-0.82-0.901-1.7-1.176-2.617l5.269-1.578c-0.269-0.895-0.317-1.868-0.087-2.842L0,8.162C0.217,7.248,0.554,6.346,1.021,5.48l4.842,2.61C6.327,7.228,7.002,6.518,7.81,6.019L4.925,1.343c0.82-0.505,1.7-0.901,2.617-1.176L9.12,5.435c0.895-0.269,1.868-0.317,2.842-0.087L13.229,0c0.914,0.217,1.815,0.554,2.682,1.021L13.3,5.863c0.862,0.464,1.573,1.139,2.071,1.948l4.676-2.885c0.505,0.82,0.901,1.7,1.176,2.617L15.955,9.12c0.181,0.602,0.246,1.241,0.209,1.891c0.004-0.001,0.007-0.002,0.011-0.003c-0.002,0.028-0.008,0.055-0.01,0.084c-0.002,0.023,0.003,0.044,0.001,0.067c-0.003,0.031-0.002,0.064-0.006,0.095c-0.01,0.094-0.032,0.188-0.047,0.282c-0.008,0.051-0.016,0.103-0.026,0.153c-0.012,0.061-0.017,0.123-0.031,0.184c-0.011,0.048-0.018,0.096-0.03,0.143l-0.016,0.003c-0.116,0.458-0.283,0.895-0.507,1.298c-0.468,0.247-0.88,0.602-1.193,1.048l-1.112,1.58l-1.617-1.057c-0.426-0.279-0.919-0.426-1.426-0.426c-1.442,0-2.615,1.173-2.615,2.615c0,0.089,0.008,0.194,0.023,0.321l0.151,1.237l-1.044,0.681C6.25,19.589,6,20.046,6,20.538C6,21.344,6.656,22,7.462,22H14h6.538C21.344,22,22,21.344,22,20.538c0-0.51-0.27-0.975-0.721-1.245l-1.264-0.756l0.346-1.432c0.068-0.279,0.1-0.54,0.1-0.798c0-1.613-1.136-2.962-2.649-3.299c0.209-0.624,0.33-1.286,0.364-1.972c2.446,0.508,4.285,2.674,4.285,5.271c0,0.438-0.058,0.861-0.157,1.269C23.316,18.181,24,19.275,24,20.538z" />' +
-            '   </svg>' +
+                '   </svg>' +
                 '   <span class="buzzhome-forecast-Label">27°C</span>' +
                 '   <span class="buzzhome-forecast-Label">12°C</span>' +
                 '  </td>' +
@@ -692,7 +704,7 @@ vis.binds.buzzhome = {
                     iconPath = "M26,15.915c0,1.774-1.438,3.212-3.212,3.212H16.72h-6.068c-1.774,0-3.212-1.438-3.212-3.212c0-1.128,0.584-2.116,1.463-2.689c-0.021-0.172-0.035-0.346-0.035-0.523c0-2.366,1.918-4.283,4.283-4.283c0.864,0,1.666,0.258,2.339,0.698c0.904-1.284,2.396-2.125,4.086-2.125c0.183,0,0.356,0.035,0.533,0.054c0.028-0.197,0.045-0.392,0.045-0.584c0-2.46-2.001-4.462-4.462-4.462c-1.446,0-2.81,0.71-3.648,1.9l-1.112,1.58L9.315,4.422c-0.577-0.377-1.244-0.576-1.93-0.576c-1.951,0-3.539,1.587-3.539,3.538c0,0.125,0.01,0.263,0.031,0.434l0.151,1.237L2.984,9.737C2.368,10.138,2,10.812,2,11.538c0,1.188,0.966,2.154,2.154,2.154h2.194c-0.509,0.525-0.824,1.225-0.879,2H4.154C1.86,15.692,0,13.833,0,11.538c0-1.458,0.755-2.736,1.892-3.477C1.864,7.839,1.846,7.614,1.846,7.385c0-3.059,2.48-5.538,5.539-5.538c1.117,0,2.155,0.333,3.025,0.902C11.579,1.088,13.507,0,15.692,0c3.569,0,6.462,2.893,6.462,6.462c0,0.411-0.052,0.808-0.128,1.198c1.513,0.859,2.546,2.466,2.546,4.33c0,0.406-0.054,0.799-0.145,1.177C25.365,13.727,26,14.743,26,15.915z";
             }
 
-            return iconPath
+            return iconPath;
 
 
 
