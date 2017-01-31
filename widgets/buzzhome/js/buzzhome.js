@@ -413,6 +413,7 @@ vis.binds.buzzhome = {
 
     },
 
+
     wetter: {
 
         init: function (wid, view, data, style, wType) {
@@ -438,59 +439,63 @@ vis.binds.buzzhome = {
             }
             data = _data;
 
-            // if (data.oid) {
-            //     data.value = vis.states.attr(data.oid + '.val');
-            //     data.ack = vis.states.attr(data.oid + '.ack');
-            //     data.lc = vis.states.attr(data.oid + '.lc');
+            if (data['oid-icon']) {
+                vis.states.bind(data['oid-icon'] + '.val', function (e, newVal, oldVal) {
+                    data.icon = newVal;
+                    var iconPath = vis.binds.buzzhome.wetter.setIconPath(data.icon);
+                    $('#buzzhome-wetter-icon').html('<path d="' + iconPath + '" />');
+                    //console.log("value oid-battery changed - old: " + oldVal + " newValue: "+ newVal);
+                });
+            }
 
-            // vis.states.bind(data.oid + '.val', function (e, newVal, oldVal) {
-            //     //console.log("value SetTemperature changed - old: " + oldVal + " newValue: "+ newVal);
-            //     data.value = newVal
-            //     $('#buzzhome-SetTemperature').html(data.value + '&ordm;C');
-            //     $("#buzzhome-slider").slider('value', data.value)
+            if (data['oid-wetterstation']) {
+                vis.states.bind(data['oid-wetterstation'] + '.val', function (e, newVal, oldVal) {
+                    data.wetterstation = newVal;
+                    $('#buzzhome-wetter-city').html(data.wetterstation);
+                    //console.log("value oid-battery changed - old: " + oldVal + " newValue: "+ newVal);
+                });
+            }
 
-            // });
-            // }
+            if (data['oid-temperatur']) {
+                vis.states.bind(data['oid-temperatur'] + '.val', function (e, newVal, oldVal) {
+                    data.temperatur = newVal;
+                    $('#buzzhome-wetter-TemperatureValue').html(data.temperatur);
+                    //console.log("value oid-battery changed - old: " + oldVal + " newValue: "+ newVal);
+                });
+            }
 
-            // if (data['oid-humidity']) {
-            //     vis.states.bind(data['oid-humidity'] + '.val', function (e, newVal, oldVal) {
-            //         data.humidity = newVal;
-            //         $('#humidity-wetter-value').html(data.humidity);
-            //         //console.log("value oid-humidity changed - old: " + oldVal + " newValue: "+ newVal);
-            //     });
-            // }
+            if (data['oid-windrichtg']) {
+                vis.states.bind(data['oid-windrichtg'] + '.val', function (e, newVal, oldVal) {
+                    data.windrichtg = newVal;
+                    vis.binds.buzzhome.wetter.setWindDirection(data.windrichtg);
+                    //console.log("value oid-battery changed - old: " + oldVal + " newValue: "+ newVal);
+                });
+            }
 
-            // if (data['oid-actual']) {
-            //     vis.states.bind(data['oid-actual'] + '.val', function (e, newVal, oldVal) {
-            //         data.actual = newVal;
-            //         $('#buzzhome-wetter-TemperatureValue').html(Math.round(data.actual));
-            //         //console.log("value oid-actual changed - old: " + oldVal + " newValue: "+ newVal);
-            //     });
-            // }
+            if (data['oid-windgeschindigkeit']) {
+                vis.states.bind(data['oid-windgeschindigkeit'] + '.val', function (e, newVal, oldVal) {
+                    data.windgeschindigkeit = newVal;
+                    $('#wind-wetter-value').html(data.windgeschindigkeit);
+                    //console.log("value oid-battery changed - old: " + oldVal + " newValue: "+ newVal);
+                });
+            }
 
-            // if (data['oid-windowstate']) {
-            //     vis.states.bind(data['oid-windowstate'] + '.val', function (e, newVal, oldVal) {
-            //         data.windowstate = newVal;
-            //         vis.binds.buzzhome.wandthermostat.updateWindowStatus(data.windowstate);
-            //         //console.log("value oid-windowstate changed - old: " + oldVal + " newValue: "+ newVal);
-            //     });
-            // }
+            if (data['oid-luftfeuchte']) {
+                vis.states.bind(data['oid-luftfeuchte'] + '.val', function (e, newVal, oldVal) {
+                    data.luftfeuchte = newVal;
+                    $('#luftfeuchte-wetter-value').html(data.luftfeuchte);
+                    //console.log("value oid-battery changed - old: " + oldVal + " newValue: "+ newVal);
+                });
+            }
 
-            // if (data['oid-mode']) {
-            //     vis.states.bind(data['oid-mode'] + '.val', function (e, newVal, oldVal) {
-            //         data.mode = newVal;
-            //         vis.binds.buzzhome.wandthermostat.updateModeStatus(data.mode);
-            //         //console.log("value oid-mode changed - old: " + oldVal + " newValue: "+ newVal);
-            //     });
-            // }
+            if (data['oid-luftdruck']) {
+                vis.states.bind(data['oid-luftdruck'] + '.val', function (e, newVal, oldVal) {
+                    data.luftdruck = newVal;
+                    $('#luftdruck-wetter-value').html(data.luftdruck);
+                    //console.log("value oid-battery changed - old: " + oldVal + " newValue: "+ newVal);
+                });
+            }
 
-            // if (data['oid-battery']) {
-            //     vis.states.bind(data['oid-battery'] + '.val', function (e, newVal, oldVal) {
-            //         data.battery = newVal;
-            //         vis.binds.buzzhome.wandthermostat.updateBatteryStatus(data.battery);
-            //         //console.log("value oid-battery changed - old: " + oldVal + " newValue: "+ newVal);
-            //     });
-            // }
 
 
             if (data['oid-aktualisierung']) data.aktualisierung = vis.states.attr(data['oid-aktualisierung'] + '.val');
@@ -511,7 +516,7 @@ vis.binds.buzzhome = {
 
 
             console.log(
-                "aktualisierung: " + data.aktualisierung +
+                "Blahaktualisierung: " + data.aktualisierung +
                 ", bedingung: " + data.bedingung +
                 ", luftdruck:" + data.luftdruck +
                 ", luftdrucktrend:" + data.luftdrucktrend +
@@ -541,21 +546,20 @@ vis.binds.buzzhome = {
 
 
 
-            
-            //HTML Zeichnen
-            vis.binds.buzzhome.wetter.draw($div, $Title, $Temperature, data.luftfeuchte, data.luftdruck, data.windgeschindigkeit, $Taupunkt, iconPath);
 
-//Windrose
+            //HTML Zeichnen
+            vis.binds.buzzhome.wetter.draw($div, $Title, $Temperature, data.luftfeuchte, data.luftdruck, data.windgeschindigkeit, data.wetterstation, $Taupunkt, iconPath);
+
+            //Windrose
             vis.binds.buzzhome.wetter.setWindDirection(data.windrichtg);
 
         },
 
         setWindDirection: function (windrichtung) {
             $("#buzzhome-windrotate-icon").css("transform", "rotate(" + windrichtung + "deg)");
-            console.log("test");
         },
 
-        draw: function (container, title, temperature, luftfeuchte, luftdruck, windgeschwindigkeit, taupunkt, iconPath) {
+        draw: function (container, title, temperature, luftfeuchte, luftdruck, windgeschwindigkeit, wetterstation, taupunkt, iconPath) {
             //Hier wird das HTML zusammengebaut und an den Container übergeben
 
             var $TitleHtml = '<span id="buzzhome-wetter-Title" class="buzzhome-Title">' + title + '</span>';
@@ -566,17 +570,17 @@ vis.binds.buzzhome = {
                 '<svg id="buzzhome-wetter-icon" class="buzzhome-wetter-icon" viewBox="0 0 26 26">' +
                 '<path d="' + iconPath + '" />' +
                 '</svg><br/>' +
-                ' <span id="buzzhome-wetter-city" class="buzzhome-Label">Strassgang</span> <br /> <span id="buzzhome-wetter-TemperatureValue" class="buzzhome-ValueSmall">' + temperature + '</span><span class="buzzhome-ValueSmall">&ordm;C</span>' +
+                ' <span id="buzzhome-wetter-city" class="buzzhome-Label">' + wetterstation + '</span> <br /> <span id="buzzhome-wetter-TemperatureValue" class="buzzhome-ValueSmall">' + temperature + '</span><span class="buzzhome-ValueSmall">&ordm;C</span>' +
                 '</td>' +
                 '<td width="50%" height="100%">' +
                 '<span class="buzzhome-Label">Humidity: </span><span class="buzzhome-ValueSmall" id="luftfeuchte-wetter-value">' + luftfeuchte + '</span><span class="buzzhome-Label"> %</span><br>' +
-                '<span class="buzzhome-Label">Pressure: </span><span class="buzzhome-ValueSmall" id="luftdruck-wetter-value">' + luftdruck + '</span><span class="buzzhome-Label"> mbar</span><br>' +
+                '<span class="buzzhome-Label">Pressure: </span><span class="buzzhome-ValueSmall" id="luftdruck-wetter-value">' + luftdruck + '</span><span class="buzzhome-Label"> mb</span><br>' +
                 '<span class="buzzhome-Label">Wind: </span><span class="buzzhome-ValueSmall" id="wind-wetter-value">' + windgeschwindigkeit + '</span><span class="buzzhome-Label"> km/h</span>' +
                 '   <span id="buzzhome-windrotate-container">' +
                 ' <svg id="buzzhome-windrose" viewBox="0 0 26 26">' +
                 ' <path d="M13,0C5.82,0,0,5.82,0,13s5.82,13,13,13s13-5.82,13-13S20.18,0,13,0zM13.984,23.953L13,21l-0.983,2.95c-5.281-0.471-9.496-4.686-9.967-9.967L5,13l-2.95-0.983c0.471-5.281,4.686-9.496,9.967-9.967L13,5l0.984-2.953c5.28,0.471,9.495,4.688,9.966,9.969L21,13l2.95,0.983C23.479,19.264,19.265,23.482,13.984,23.953z" /></svg>' +
                 '<svg id="buzzhome-windrotate-icon" viewBox="0 0 6 24">' +
-                '<path d="M6,12L3,24L0,12l1.5-6l0.75,3L1.5,12h3L4,10L3,6L2.25,3L3,0L6,12z" /> </svg>' +
+                '<path d="M0,12L3,0l3,12l-1.5,6l-0.75-3l0.75-3h-3L2,14l1,4l0.75,3L3,24L0,12z" /> </svg>' +
                 '</span>' +
                 '<path d="M25.56,51.12L0,85.56L25.56,0l25.56,85.56L25.56,51.12z" />' +
                 '</svg></br>' +
@@ -584,7 +588,6 @@ vis.binds.buzzhome = {
                 '</td>' +
                 ' </tr>' +
                 ' </table>';
-
 
 
 
@@ -711,8 +714,6 @@ vis.binds.buzzhome = {
         }
 
     }
-
-
 
 
 }
