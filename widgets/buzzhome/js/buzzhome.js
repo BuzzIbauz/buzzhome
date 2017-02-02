@@ -56,7 +56,7 @@ vis.binds.buzzhome = {
             return rgb;
         },
 
-        setForegroundColor: function (backgroundcolor) {
+        getForegroundColor: function (backgroundcolor) {
 
             var bghex = backgroundcolor.replace(/[#]/g, '');
 
@@ -80,6 +80,18 @@ vis.binds.buzzhome = {
             }
 
         },
+
+        getDropshadowColor: function (backgroundcolor, alpha) {
+            var r = parseInt(backgroundcolor.slice(1, 3), 16),
+                g = parseInt(backgroundcolor.slice(3, 5), 16),
+                b = parseInt(backgroundcolor.slice(5, 7), 16);
+
+            if (alpha) {
+                return "rgba(" + r + ", " + g + ", " + b + ", " + alpha + ")";
+            } else {
+                return "rgb(" + r + ", " + g + ", " + b + ")";
+            }
+        }
 
 
 

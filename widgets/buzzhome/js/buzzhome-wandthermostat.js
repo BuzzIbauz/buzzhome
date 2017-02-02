@@ -164,6 +164,8 @@
 
             var Color1 = PrimaryColor;
             var Color2 = vis.binds.buzzhome.colorFunctions.ColorLuminance(PrimaryColor, -0.3);
+            var BoxshadowColor = vis.binds.buzzhome.colorFunctions.getDropshadowColor(PrimaryColor, 0.2)
+
 
             var Root = $(".buzzhome-Root");
             var Title = $("#buzzhome-Title");
@@ -185,7 +187,7 @@
 
                 SetTemperature.css("color", "#FFFFFF");
 
-                $("#buzzhome-chosenValue").css("color", vis.binds.buzzhome.colorFunctions.setForegroundColor(PrimaryColor));
+                $("#buzzhome-chosenValue").css("color", vis.binds.buzzhome.colorFunctions.getForegroundColor(PrimaryColor));
 
                 for (var i = 0; i < len; i++) {
                     smallValues.eq(i).css("color", "#FFFFFF");
@@ -202,11 +204,11 @@
 
                 Root.css("backgroundColor", "#FFFFFF");
 
-                Root.css("boxShadow", "0px 0px 15px" + PrimaryColor);
+                Root.css("boxShadow", "0px 0px 15px" + BoxshadowColor);
 
                 $("#buzzhome-ChosenSVG").attr("fill", Color2);
 
-                $("#buzzhome-chosenValue").css("color", vis.binds.buzzhome.colorFunctions.setForegroundColor(PrimaryColor));
+                $("#buzzhome-chosenValue").css("color", vis.binds.buzzhome.colorFunctions.getForegroundColor(PrimaryColor));
 
                 $("#buzzhome-slider .ui-slider-range").css("backgroundImage", "linear-gradient(" + Color2 + " 0%," + PrimaryColor + " 15%)");
 
