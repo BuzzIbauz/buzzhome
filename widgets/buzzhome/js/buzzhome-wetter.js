@@ -100,24 +100,24 @@ vis.binds.buzzhome.wetter = {
         if (data['oid-windrichtung']) data.windrichtung = vis.states.attr(data['oid-windrichtung'] + '.val');
         if (data['oid-icon']) data.icon = vis.states.attr(data['oid-icon'] + '.val');
         //forecast
-        if (data['oid-fct1-high']) data.icon = vis.states.attr(data['oid-fct1-high'] + '.val');
-        if (data['oid-fct1-low']) data.icon = vis.states.attr(data['oid-fct1-low'] + '.val');
-        if (data['oid-fct1-weekday']) data.icon = vis.states.attr(data['oid-fct1-weekday'] + '.val');
-        if (data['oid-fct1-icon']) data.icon = vis.states.attr(data['oid-fct1-icon'] + '.val');
-        if (data['oid-fct1-pop']) data.icon = vis.states.attr(data['oid-fct1-pop'] + '.val');
-        if (data['oid-fct1-qpf']) data.icon = vis.states.attr(data['oid-fct1-qpf'] + '.val');
-        if (data['oid-fct2-high']) data.icon = vis.states.attr(data['oid-fct2-high'] + '.val');
-        if (data['oid-fct2-low']) data.icon = vis.states.attr(data['oid-fct2-low'] + '.val');
-        if (data['oid-fct2-weekday']) data.icon = vis.states.attr(data['oid-fct2-weekday'] + '.val');
-        if (data['oid-fct2-icon']) data.icon = vis.states.attr(data['oid-fct2-icon'] + '.val');
-        if (data['oid-fct3-high']) data.icon = vis.states.attr(data['oid-fct3-high'] + '.val');
-        if (data['oid-fct3-low']) data.icon = vis.states.attr(data['oid-fct3-low'] + '.val');
-        if (data['oid-fct3-weekday']) data.icon = vis.states.attr(data['oid-fct3-weekday'] + '.val');
-        if (data['oid-fct3-icon']) data.icon = vis.states.attr(data['oid-fct3-icon'] + '.val');
-        if (data['oid-fct4-high']) data.icon = vis.states.attr(data['oid-fct4-high'] + '.val');
-        if (data['oid-fct4-low']) data.icon = vis.states.attr(data['oid-fct4-low'] + '.val');
-        if (data['oid-fct4-weekday']) data.icon = vis.states.attr(data['oid-fct4-weekday'] + '.val');
-        if (data['oid-fct4-icon']) data.icon = vis.states.attr(data['oid-fct4-icon'] + '.val');
+        if (data['oid-fct1-high']) data.high1 = vis.states.attr(data['oid-fct1-high'] + '.val');
+        if (data['oid-fct1-low']) data.low1 = vis.states.attr(data['oid-fct1-low'] + '.val');
+        if (data['oid-fct1-weekday']) data.weekday1 = vis.states.attr(data['oid-fct1-weekday'] + '.val');
+        if (data['oid-fct1-icon']) data.icon1 = vis.states.attr(data['oid-fct1-icon'] + '.val');
+        if (data['oid-fct1-pop']) data.pop = vis.states.attr(data['oid-fct1-pop'] + '.val');
+        if (data['oid-fct1-qpf']) data.qpf = vis.states.attr(data['oid-fct1-qpf'] + '.val');
+        if (data['oid-fct2-high']) data.high2 = vis.states.attr(data['oid-fct2-high'] + '.val');
+        if (data['oid-fct2-low']) data.low2 = vis.states.attr(data['oid-fct2-low'] + '.val');
+        if (data['oid-fct2-weekday']) data.weekday2 = vis.states.attr(data['oid-fct2-weekday'] + '.val');
+        if (data['oid-fct2-icon']) data.icon2 = vis.states.attr(data['oid-fct2-icon'] + '.val');
+        if (data['oid-fct3-high']) data.high3 = vis.states.attr(data['oid-fct3-high'] + '.val');
+        if (data['oid-fct3-low']) data.low3 = vis.states.attr(data['oid-fct3-low'] + '.val');
+        if (data['oid-fct3-weekday']) data.weekday3 = vis.states.attr(data['oid-fct3-weekday'] + '.val');
+        if (data['oid-fct3-icon']) data.icon3 = vis.states.attr(data['oid-fct3-icon'] + '.val');
+        if (data['oid-fct4-high']) data.high4 = vis.states.attr(data['oid-fct4-high'] + '.val');
+        if (data['oid-fct4-low']) data.low4 = vis.states.attr(data['oid-fct4-low'] + '.val');
+        if (data['oid-fct4-weekday']) data.weekday4 = vis.states.attr(data['oid-fct4-weekday'] + '.val');
+        if (data['oid-fct4-icon']) data.icon4 = vis.states.attr(data['oid-fct4-icon'] + '.val');
 
 
         console.log(
@@ -153,7 +153,7 @@ vis.binds.buzzhome.wetter = {
 
 
         //HTML Zeichnen
-        vis.binds.buzzhome.wetter.draw($div, $Title, $Temperature, data.luftfeuchte, data.luftdruck, data.windgeschindigkeit, data.wetterstation, $Taupunkt, iconPath);
+        vis.binds.buzzhome.wetter.draw($div, $Title, $Temperature, data.luftfeuchte, data.luftdruck, data.windgeschindigkeit, data.wetterstation, $Taupunkt, iconPath, data.pop, data.qpf);
 
         //Windrose
         vis.binds.buzzhome.wetter.setWindDirection(data.windrichtg);
@@ -164,7 +164,7 @@ vis.binds.buzzhome.wetter = {
         $("#buzzhome-windrotate-icon").css("transform", "rotate(" + windrichtung + "deg)");
     },
 
-    draw: function (container, title, temperature, luftfeuchte, luftdruck, windgeschwindigkeit, wetterstation, taupunkt, iconPath) {
+    draw: function (container, title, temperature, luftfeuchte, luftdruck, windgeschwindigkeit, wetterstation, taupunkt, iconPath, pop, qpf) {
         //Hier wird das HTML zusammengebaut und an den Container übergeben
 
         var $TitleHtml = '<span id="buzzhome-wetter-Title" class="buzzhome-Title">' + title + '</span>';
@@ -189,7 +189,8 @@ vis.binds.buzzhome.wetter = {
             '</span>' +
             '<path d="M25.56,51.12L0,85.56L25.56,0l25.56,85.56L25.56,51.12z" />' +
             '</svg></br>' +
-            '<span class="buzzhome-Label">Dewpoint: </span><span class="buzzhome-ValueSmall" id="wind-wetter-value">' + taupunkt + '</span><span class="buzzhome-Label"> °C</span><br>' +
+            '<span class="buzzhome-Label">Rain: </span><span class="buzzhome-ValueSmall" id="rain-pop-value">' + pop +'</span><span class="buzzhome-Label"> %</span><br>' +
+            '<span class="buzzhome-ValueSmall" id="rain-qpf.value"> |' + qpf + '</span><span class="buzzhome-Label"> mm</span><br>' +
             '</td>' +
             ' </tr>' +
             ' </table>';
