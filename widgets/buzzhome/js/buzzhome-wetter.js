@@ -82,7 +82,7 @@ vis.binds.buzzhome.wetter = {
             });
         }
 
-          if (data['oid-fct1-pop']) {
+        if (data['oid-fct1-pop']) {
             vis.states.bind(data['oid-fct1-pop'] + '.val', function (e, newVal, oldVal) {
                 data.pop = newVal;
                 $('#rain-pop-value').html(data.pop);
@@ -90,7 +90,7 @@ vis.binds.buzzhome.wetter = {
             });
         }
 
-         if (data['oid-fct1-qpf']) {
+        if (data['oid-fct1-qpf']) {
             vis.states.bind(data['oid-fct1-qpf'] + '.val', function (e, newVal, oldVal) {
                 data.qpf = newVal;
                 $('#rain-qpf-value').html(data.qpf);
@@ -98,7 +98,7 @@ vis.binds.buzzhome.wetter = {
             });
         }
 
-         if (data['oid-fct1-icon']) {
+        if (data['oid-fct1-icon']) {
             vis.states.bind(data['oid-fct1-icon'] + '.val', function (e, newVal, oldVal) {
                 data.icon1 = newVal;
                 var iconPathFct1 = vis.binds.buzzhome.wetter.setIconPath(data.icon1);
@@ -107,7 +107,7 @@ vis.binds.buzzhome.wetter = {
             });
         }
 
-         if (data['oid-fct2-icon']) {
+        if (data['oid-fct2-icon']) {
             vis.states.bind(data['oid-fct2-icon'] + '.val', function (e, newVal, oldVal) {
                 data.icon2 = newVal;
                 var iconPathFct2 = vis.binds.buzzhome.wetter.setIconPath(data.icon2);
@@ -116,7 +116,7 @@ vis.binds.buzzhome.wetter = {
             });
         }
 
-          if (data['oid-fct3-icon']) {
+        if (data['oid-fct3-icon']) {
             vis.states.bind(data['oid-fct3-icon'] + '.val', function (e, newVal, oldVal) {
                 data.icon3 = newVal;
                 var iconPathFct3 = vis.binds.buzzhome.wetter.setIconPath(data.icon3);
@@ -125,7 +125,7 @@ vis.binds.buzzhome.wetter = {
             });
         }
 
-          if (data['oid-fct4-icon']) {
+        if (data['oid-fct4-icon']) {
             vis.states.bind(data['oid-fct4-icon'] + '.val', function (e, newVal, oldVal) {
                 data.icon4 = newVal;
                 var iconPathFct4 = vis.binds.buzzhome.wetter.setIconPath(data.icon4);
@@ -134,7 +134,7 @@ vis.binds.buzzhome.wetter = {
             });
         }
 
-          if (data['oid-fct1-weekday']) {
+        if (data['oid-fct1-weekday']) {
             vis.states.bind(data['oid-fct1-weekday'] + '.val', function (e, newVal, oldVal) {
                 data.weekday1 = newVal;
                 $('#buzzhome-forecast-Label1').html(data.weekday1);
@@ -142,7 +142,7 @@ vis.binds.buzzhome.wetter = {
             });
         }
 
-         if (data['oid-fct2-weekday']) {
+        if (data['oid-fct2-weekday']) {
             vis.states.bind(data['oid-fct2-weekday'] + '.val', function (e, newVal, oldVal) {
                 data.weekday2 = newVal;
                 $('#buzzhome-forecast-Label2').html(data.weekday2);
@@ -150,7 +150,7 @@ vis.binds.buzzhome.wetter = {
             });
         }
 
-         if (data['oid-fct3-weekday']) {
+        if (data['oid-fct3-weekday']) {
             vis.states.bind(data['oid-fct3-weekday'] + '.val', function (e, newVal, oldVal) {
                 data.weekday3 = newVal;
                 $('#buzzhome-forecast-Label3').html(data.weekday3);
@@ -158,7 +158,7 @@ vis.binds.buzzhome.wetter = {
             });
         }
 
-         if (data['oid-fct4-weekday']) {
+        if (data['oid-fct4-weekday']) {
             vis.states.bind(data['oid-fct4-weekday'] + '.val', function (e, newVal, oldVal) {
                 data.weekday4 = newVal;
                 $('#buzzhome-forecast-Label4').html(data.weekday4);
@@ -166,7 +166,7 @@ vis.binds.buzzhome.wetter = {
             });
         }
 
-           if (data['oid-fct1-high']) {
+        if (data['oid-fct1-high']) {
             vis.states.bind(data['oid-fct1-high'] + '.val', function (e, newVal, oldVal) {
                 data.high1 = newVal;
                 $('#buzzhome-forecast-high1').html(data.high1 + '°C');
@@ -174,7 +174,7 @@ vis.binds.buzzhome.wetter = {
             });
         }
 
-              if (data['oid-fct2-high']) {
+        if (data['oid-fct2-high']) {
             vis.states.bind(data['oid-fct2-high'] + '.val', function (e, newVal, oldVal) {
                 data.high2 = newVal;
                 $('#buzzhome-forecast-high2').html(data.high2 + '°C');
@@ -182,7 +182,7 @@ vis.binds.buzzhome.wetter = {
             });
         }
 
-              if (data['oid-fct3-high']) {
+        if (data['oid-fct3-high']) {
             vis.states.bind(data['oid-fct3-high'] + '.val', function (e, newVal, oldVal) {
                 data.high3 = newVal;
                 $('#buzzhome-forecast-high3').html(data.high3 + '°C');
@@ -190,7 +190,7 @@ vis.binds.buzzhome.wetter = {
             });
         }
 
-              if (data['oid-fct4-high']) {
+        if (data['oid-fct4-high']) {
             vis.states.bind(data['oid-fct4-high'] + '.val', function (e, newVal, oldVal) {
                 data.high4 = newVal;
                 $('#buzzhome-forecast-high4').html(data.high4 + '°C');
@@ -198,7 +198,7 @@ vis.binds.buzzhome.wetter = {
             });
         }
 
-         if (data['oid-fct1-low']) {
+        if (data['oid-fct1-low']) {
             vis.states.bind(data['oid-fct1-low'] + '.val', function (e, newVal, oldVal) {
                 data.low1 = newVal;
                 $('#buzzhome-forecast-low1').html(data.low1 + '°C');
@@ -206,7 +206,7 @@ vis.binds.buzzhome.wetter = {
             });
         }
 
-              if (data['oid-fct2-low']) {
+        if (data['oid-fct2-low']) {
             vis.states.bind(data['oid-fct2-low'] + '.val', function (e, newVal, oldVal) {
                 data.low2 = newVal;
                 $('#buzzhome-forecast-low2').html(data.low2 + '°C');
@@ -214,7 +214,7 @@ vis.binds.buzzhome.wetter = {
             });
         }
 
-              if (data['oid-fct3-low']) {
+        if (data['oid-fct3-low']) {
             vis.states.bind(data['oid-fct3-low'] + '.val', function (e, newVal, oldVal) {
                 data.low3 = newVal;
                 $('#buzzhome-forecast-low3').html(data.low3 + '°C');
@@ -222,7 +222,7 @@ vis.binds.buzzhome.wetter = {
             });
         }
 
-              if (data['oid-fct4-low']) {
+        if (data['oid-fct4-low']) {
             vis.states.bind(data['oid-fct4-low'] + '.val', function (e, newVal, oldVal) {
                 data.low4 = newVal;
                 $('#buzzhome-forecast-low4').html(data.low4 + '°C');
@@ -230,7 +230,7 @@ vis.binds.buzzhome.wetter = {
             });
         }
 
-        
+
 
 
 
@@ -304,7 +304,7 @@ vis.binds.buzzhome.wetter = {
 
 
         //HTML Zeichnen
-        vis.binds.buzzhome.wetter.draw($div, $Title, data.temperatur, data.luftfeuchte, data.luftdruck, data.windgeschindigkeit, data.wetterstation, iconPath, data.pop, data.qpf, iconPathFct1, iconPathFct2, iconPathFct3, iconPathFct4, data.weekday1, data.weekday2, data.weekday3, data.weekday4,data.high1, data.high2, data.high3, data.high4, data.low1, data.low2, data.low3, data.low4);
+        vis.binds.buzzhome.wetter.draw($div, $Title, data.temperatur, data.luftfeuchte, data.luftdruck, data.windgeschindigkeit, data.wetterstation, iconPath, data.pop, data.qpf, iconPathFct1, iconPathFct2, iconPathFct3, iconPathFct4, data.weekday1, data.weekday2, data.weekday3, data.weekday4, data.high1, data.high2, data.high3, data.high4, data.low1, data.low2, data.low3, data.low4);
 
         //Windrose
         vis.binds.buzzhome.wetter.setWindDirection(data.windrichtg);
@@ -340,8 +340,8 @@ vis.binds.buzzhome.wetter = {
             '</span>' +
             '<path d="M25.56,51.12L0,85.56L25.56,0l25.56,85.56L25.56,51.12z" />' +
             '</svg></br>' +
-            '<span class="buzzhome-Label">Rain: </span><span class="buzzhome-ValueSmall" id="rain-pop-value">' + pop +'</span><span class="buzzhome-Label"> %</span><br>' +
-            '<span class="buzzhome-ValueSmall" id="rain-qpf-value"> |' + qpf + '</span><span class="buzzhome-Label"> mm</span><br>' +
+            '<span class="buzzhome-Label">Rain: </span><span class="buzzhome-ValueSmall" id="rain-pop-value">' + pop + '</span><span class="buzzhome-Label"> %</span>' +
+            '<span class="buzzhome-ValueSmall" id="rain-qpf-value"> |' + qpf + '</span><span class="buzzhome-Label"> mm</span>' +
             '</td>' +
             ' </tr>' +
             ' </table>';
@@ -352,38 +352,38 @@ vis.binds.buzzhome.wetter = {
             '<table style="text-align:center; border-collapse: separate; border-spacing: 0px; " width="100% " height="32px">' +
             '<tr>' +
             '<td style="background-color:rgba(165, 124, 52, 0.40);">' +
-            '<span class="buzzhome-forecast-Label" id="buzzhome-forecast-Label1">'+ weekday1 +'</span>' +
+            '<span class="buzzhome-forecast-Label" id="buzzhome-forecast-Label1">' + weekday1 + '</span>' +
             '<svg id="buzzhome-forecast-icon1" viewBox="0 0 26 26">' +
-            '<path d="'+ iconPathFct1 +'" />' +
+            '<path d="' + iconPathFct1 + '" />' +
             '</svg>' +
-            '<span class="buzzhome-forecast-Label" id="buzzhome-forecast-high1">'+ high1 +'°C</span>' +
-            '<span class="buzzhome-forecast-Label" id="buzzhome-forecast-low1">'+ low1 +'°C</span>' +
+            '<span class="buzzhome-forecast-Label" id="buzzhome-forecast-high1">' + high1 + '°C</span>' +
+            '<span class="buzzhome-forecast-Label" id="buzzhome-forecast-low1">' + low1 + '°C</span>' +
             '</td>' +
 
             '<td style="background-color:rgba(165, 124, 52, 0.35);">' +
-            ' <span class="buzzhome-forecast-Label" id="buzzhome-forecast-Label2">'+ weekday2 +'</span>' +
+            ' <span class="buzzhome-forecast-Label" id="buzzhome-forecast-Label2">' + weekday2 + '</span>' +
             '<svg id="buzzhome-forecast-icon2" viewBox="0 0 26 26">' +
-            '<path d="'+ iconPathFct2 +'" />' +
+            '<path d="' + iconPathFct2 + '" />' +
             '  </svg>' +
-            '  <span class="buzzhome-forecast-Label" id="buzzhome-forecast-high2">'+ high2 +'°C</span>' +
-            '  <span class="buzzhome-forecast-Label" id="buzzhome-forecast-low2">'+ low2 +'°C</span>' +
+            '  <span class="buzzhome-forecast-Label" id="buzzhome-forecast-high2">' + high2 + '°C</span>' +
+            '  <span class="buzzhome-forecast-Label" id="buzzhome-forecast-low2">' + low2 + '°C</span>' +
             '  </td>' +
 
             '  <td style="background-color:rgba(165, 124, 52, 0.25);">' +
-            '  <span class="buzzhome-forecast-Label" id="buzzhome-forecast-Label3">'+ weekday3 +'</span>' +
+            '  <span class="buzzhome-forecast-Label" id="buzzhome-forecast-Label3">' + weekday3 + '</span>' +
             '  <svg id="buzzhome-forecast-icon3" viewBox="0 0 26 26">' +
-            '  <path d="'+ iconPathFct3 +'" />' + 
+            '  <path d="' + iconPathFct3 + '" />' +
             '  </svg>' +
-            '  <span class="buzzhome-forecast-Label" id="buzzhome-forecast-high3">'+ high3 +'°C</span>' +
-            '  <span class="buzzhome-forecast-Label" id="buzzhome-forecast-low3">'+ low3 +'°C</span>' +
+            '  <span class="buzzhome-forecast-Label" id="buzzhome-forecast-high3">' + high3 + '°C</span>' +
+            '  <span class="buzzhome-forecast-Label" id="buzzhome-forecast-low3">' + low3 + '°C</span>' +
             '  </td>' +
             '  <td style="background-color:rgba(165, 124, 52, 0.15);">' +
-            '  <span class="buzzhome-forecast-Label" id="buzzhome-forecast-Label4">'+ weekday4 +'</span>' +
+            '  <span class="buzzhome-forecast-Label" id="buzzhome-forecast-Label4">' + weekday4 + '</span>' +
             '  <svg id="buzzhome-forecast-icon4" viewBox="0 0 26 26">' +
-            '  <path d="'+ iconPathFct4 +'" />' +
+            '  <path d="' + iconPathFct4 + '" />' +
             '   </svg>' +
-            '   <span class="buzzhome-forecast-Label" id="buzzhome-forecast-high4">'+ high4 +'°C</span>' +
-            '   <span class="buzzhome-forecast-Label" id="buzzhome-forecast-low4">'+ low4 +'°C</span>' +
+            '   <span class="buzzhome-forecast-Label" id="buzzhome-forecast-high4">' + high4 + '°C</span>' +
+            '   <span class="buzzhome-forecast-Label" id="buzzhome-forecast-low4">' + low4 + '°C</span>' +
             '  </td>' +
             ' </tr >' +
             ' </table >' +
@@ -392,6 +392,78 @@ vis.binds.buzzhome.wetter = {
 
 
         container.append($TitleHtml + $TableHtml + $ForecastContainerHtml);
+
+    },
+
+    setHighlightColor: function (PrimaryColor, invertColors) {
+
+        var Color1 = PrimaryColor;
+        var Color2 = vis.binds.buzzhome.colorFunctions.ColorLuminance(PrimaryColor, -0.3);
+        var BoxshadowColor = vis.binds.buzzhome.colorFunctions.getDropshadowColor(PrimaryColor, 0.2)
+
+
+        var Root = $(".buzzhome-Root");
+        var Title = $("#buzzhome-wetter-Title");
+        var WetterIcon = $("#buzzhome-wetter-icon");
+        var Temperature = $("#buzzhome-wetter-TemperatureValue");
+        var City = $("#buzzhome-wetter-city");
+
+        var HumidityValue = $("# luftfeuchte-wetter-value");
+        var AirpressureValue = $("#luftdruck-wetter-value");
+        var WindValue = $("#wind-wetter-value");
+        var WindRotateIcon = $("#buzzhome-windrotate-icon");
+        var RainPop = $("rain-pop-value#");
+        var Rainqpf = $("#rain-qpf-value");
+
+      
+
+
+        if (invertColors == true) {
+
+            Root.css("backgroundColor", PrimaryColor);
+
+            Root.css("boxShadow", "0px 0px 20px transparent");
+
+            Title.css("color", "#FFFFFF");
+
+            TemperatureValue.css("color", "#FFFFFF");
+
+            SetTemperature.css("color", "#FFFFFF");
+
+            $("#buzzhome-chosenValue").css("color", vis.binds.buzzhome.colorFunctions.getForegroundColor(PrimaryColor));
+
+            for (var i = 0; i < len; i++) {
+                smallValues.eq(i).css("color", "#FFFFFF");
+
+            }
+
+        }
+
+        else {
+
+            Title.css("color", PrimaryColor);
+
+            $("#buzzhome-chosenBorder").css("backgroundColor", PrimaryColor);
+
+            Root.css("backgroundColor", "#FFFFFF");
+
+            Root.css("boxShadow", "0px 0px 15px" + BoxshadowColor);
+
+            $("#buzzhome-ChosenSVG").attr("fill", Color2);
+
+            $("#buzzhome-chosenValue").css("color", vis.binds.buzzhome.colorFunctions.getForegroundColor(PrimaryColor));
+
+            $("#buzzhome-slider .ui-slider-range").css("backgroundImage", "linear-gradient(" + Color2 + " 0%," + PrimaryColor + " 15%)");
+
+            TemperatureValue.css("color", PrimaryColor);
+
+            SetTemperature.css("color", PrimaryColor);
+
+            for (var i = 0; i < len; i++) {
+                smallValues.eq(i).css("color", PrimaryColor);
+            }
+
+        }
 
     },
 
