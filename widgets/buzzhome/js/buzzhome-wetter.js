@@ -309,6 +309,9 @@ vis.binds.buzzhome.wetter = {
         //Windrose
         vis.binds.buzzhome.wetter.setWindDirection(data.windrichtg);
 
+        // Farben setzen
+        vis.binds.buzzhome.wetter.setHighlightColor($PrimaryColor, $invertColors);
+
     },
 
     setWindDirection: function (windrichtung) {
@@ -406,7 +409,6 @@ vis.binds.buzzhome.wetter = {
         var Title = $("#buzzhome-wetter-Title");
         var WetterIcon = $("#buzzhome-wetter-icon");
         var Temperature = $("#buzzhome-wetter-TemperatureValue");
-        var City = $("#buzzhome-wetter-city");
 
         var HumidityValue = $("# luftfeuchte-wetter-value");
         var AirpressureValue = $("#luftdruck-wetter-value");
@@ -426,43 +428,48 @@ vis.binds.buzzhome.wetter = {
 
             Title.css("color", "#FFFFFF");
 
-            TemperatureValue.css("color", "#FFFFFF");
+            WetterIcon.attr("fill", "#FFFFFF");
 
-            SetTemperature.css("color", "#FFFFFF");
+            Temperature.css("color", "#FFFFFF");
 
-            $("#buzzhome-chosenValue").css("color", vis.binds.buzzhome.colorFunctions.getForegroundColor(PrimaryColor));
+            HumidityValue.css("color", "#FFFFFF");
 
-            for (var i = 0; i < len; i++) {
-                smallValues.eq(i).css("color", "#FFFFFF");
+            AirpressureValue.css("color", "#FFFFFF");
 
-            }
+            WindValue.css("color", "#FFFFFF");
 
+            WindRotateIcon.attr("fill", "#FFFFFF");
+
+            RainPop.css("color", "#FFFFFF");
+
+            Rainqpf.css("color", "#FFFFFF");
+       
         }
 
         else {
 
-            Title.css("color", PrimaryColor);
-
-            $("#buzzhome-chosenBorder").css("backgroundColor", PrimaryColor);
-
-            Root.css("backgroundColor", "#FFFFFF");
+           Root.css("backgroundColor", "#FFFFFF");
 
             Root.css("boxShadow", "0px 0px 15px" + BoxshadowColor);
 
-            $("#buzzhome-ChosenSVG").attr("fill", Color2);
+            Title.css("color", PrimaryColor);
 
-            $("#buzzhome-chosenValue").css("color", vis.binds.buzzhome.colorFunctions.getForegroundColor(PrimaryColor));
+            WetterIcon.attr("fill", PrimaryColor);
 
-            $("#buzzhome-slider .ui-slider-range").css("backgroundImage", "linear-gradient(" + Color2 + " 0%," + PrimaryColor + " 15%)");
+            Temperature.css("color", PrimaryColor);
 
-            TemperatureValue.css("color", PrimaryColor);
+            HumidityValue.css("color", PrimaryColor);
 
-            SetTemperature.css("color", PrimaryColor);
+            AirpressureValue.css("color", PrimaryColor);
 
-            for (var i = 0; i < len; i++) {
-                smallValues.eq(i).css("color", PrimaryColor);
-            }
+            WindValue.css("color", PrimaryColor);
 
+            WindRotateIcon.attr("fill", PrimaryColor);
+
+            RainPop.css("color", PrimaryColor);
+
+            Rainqpf.css("color", PrimaryColor);
+    
         }
 
     },
