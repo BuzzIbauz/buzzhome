@@ -3,7 +3,7 @@
   
         init: function (wid, view, data, style, wType) {
 
-            var $div = $('#' + wid).addClass('buzzhome-Root');
+            var $div = $('#' + wid).addClass('buzzhome-wandthermostat-Root');
             if (!$div.length) {
                 setTimeout(function () {
                     vis.binds.buzzhome.wandthermostat.init(wid, view, data, style, wType);
@@ -167,7 +167,7 @@
             var BoxshadowColor = vis.binds.buzzhome.colorFunctions.getDropshadowColor(PrimaryColor, 0.2)
 
 
-            var Root = $(".buzzhome-Root");
+            var Root = $(".buzzhome-wandthermostat-Root");
             var Title = $("#buzzhome-Title");
             var TemperatureValue = $("#buzzhome-TemperatureValue");
             var SetTemperature = $("#buzzhome-SetTemperature");
@@ -206,7 +206,7 @@
 
                 Root.css("boxShadow", "0px 0px 15px" + BoxshadowColor);
 
-                $("#buzzhome-ChosenSVG").attr("fill", Color2);
+                $("#buzzhome-ChosenSVG").css("fill", Color2);
 
                 $("#buzzhome-chosenValue").css("color", vis.binds.buzzhome.colorFunctions.getForegroundColor(PrimaryColor));
 

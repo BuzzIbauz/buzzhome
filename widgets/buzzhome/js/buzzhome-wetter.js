@@ -5,7 +5,7 @@ vis.binds.buzzhome.wetter = {
 
     init: function (wid, view, data, style, wType) {
 
-        var $div = $('#' + wid).addClass('buzzhome-Root');
+        var $div = $('#' + wid).addClass('buzzhome-wetter-Root');
         if (!$div.length) {
             setTimeout(function () {
                 vis.binds.buzzhome.wetter.init(wid, view, data, style, wType);
@@ -400,21 +400,26 @@ vis.binds.buzzhome.wetter = {
 
     setHighlightColor: function (PrimaryColor, invertColors) {
 
+console.log(PrimaryColor+invertColors);
+
+
         var Color1 = PrimaryColor;
         var Color2 = vis.binds.buzzhome.colorFunctions.ColorLuminance(PrimaryColor, -0.3);
         var BoxshadowColor = vis.binds.buzzhome.colorFunctions.getDropshadowColor(PrimaryColor, 0.2)
 
 
-        var Root = $(".buzzhome-Root");
+
+
+        var Root = $(".buzzhome-wetter-Root");
         var Title = $("#buzzhome-wetter-Title");
         var WetterIcon = $("#buzzhome-wetter-icon");
         var Temperature = $("#buzzhome-wetter-TemperatureValue");
 
-        var HumidityValue = $("# luftfeuchte-wetter-value");
+        var HumidityValue = $("#luftfeuchte-wetter-value");
         var AirpressureValue = $("#luftdruck-wetter-value");
         var WindValue = $("#wind-wetter-value");
         var WindRotateIcon = $("#buzzhome-windrotate-icon");
-        var RainPop = $("rain-pop-value#");
+        var RainPop = $("#rain-pop-value");
         var Rainqpf = $("#rain-qpf-value");
 
       
@@ -428,7 +433,7 @@ vis.binds.buzzhome.wetter = {
 
             Title.css("color", "#FFFFFF");
 
-            WetterIcon.attr("fill", "#FFFFFF");
+            WetterIcon.css("fill", "#FFFFFF");
 
             Temperature.css("color", "#FFFFFF");
 
@@ -438,7 +443,7 @@ vis.binds.buzzhome.wetter = {
 
             WindValue.css("color", "#FFFFFF");
 
-            WindRotateIcon.attr("fill", "#FFFFFF");
+            WindRotateIcon.css("fill", "#FFFFFF");
 
             RainPop.css("color", "#FFFFFF");
 
@@ -454,7 +459,7 @@ vis.binds.buzzhome.wetter = {
 
             Title.css("color", PrimaryColor);
 
-            WetterIcon.attr("fill", PrimaryColor);
+            WetterIcon.css("fill", PrimaryColor);
 
             Temperature.css("color", PrimaryColor);
 
@@ -464,7 +469,7 @@ vis.binds.buzzhome.wetter = {
 
             WindValue.css("color", PrimaryColor);
 
-            WindRotateIcon.attr("fill", PrimaryColor);
+            WindRotateIcon.css("fill", PrimaryColor);
 
             RainPop.css("color", PrimaryColor);
 
