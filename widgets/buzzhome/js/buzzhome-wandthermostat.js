@@ -12,7 +12,6 @@
             }
 
 
-
             //DataHandling
             var _data = { wid: wid, view: view, wType: wType };
 
