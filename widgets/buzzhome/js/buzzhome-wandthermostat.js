@@ -178,7 +178,9 @@
 
                 Root.css("backgroundColor", PrimaryColor);
 
-                Root.css("boxShadow", "0px 0px 20px transparent");
+                // Root.style.boxShadow = "0px 0px 15px transparent";
+
+                // Root.css("box-shadow", "0px 0px 20px transparent");
 
                 Title.css("color", "#FFFFFF");
 
@@ -203,7 +205,11 @@
 
                 Root.css("backgroundColor", "#FFFFFF");
 
-                Root.css("boxShadow", "0px 0px 15px" + BoxshadowColor);
+                // $('#txtApproxFare').css({'border-color':'red','box-shadow':'0px 0px 1px red'})
+
+                // Root.style.boxShadow = "0px 0px 15px" + BoxshadowColor;
+
+                // Root.css("box-shadow", "0px 0px 15px" + BoxshadowColor);
 
                 $("#buzzhome-ChosenSVG").css("fill", Color2);
 
@@ -224,13 +230,13 @@
         },
 
         updateBatteryStatus: function (batteryStatus) {
-            if (batteryStatus == 1) {
+            if (batteryStatus == true) {
 
-                $('#buzzhome-BatteryIndicator').css('opacyty', '0');
+                $('#buzzhome-BatteryIndicator').css('opacity', '1');
             }
             else {
 
-                $('#buzzhome-BatteryIndicator').css('opacyty', '1');
+                $('#buzzhome-BatteryIndicator').css('opacity', '0');
             }
         },
 
