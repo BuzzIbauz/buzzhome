@@ -92,6 +92,8 @@ vis.binds.buzzhome.wateringventil = {
         // create slider
         //vis.binds.buzzhome.wandthermostat.createSlider($Value, data.oid);
 
+        vis.binds.buzzhome.wateringventil.createToggle();
+
 
 
 
@@ -101,35 +103,22 @@ vis.binds.buzzhome.wateringventil = {
 
     },
 
-
-    // createSlider: function (slideAmount, dataoid) {
-
-    //     var chosenPosition = $('#buzzhome-chosen');
-    //     var display = $('#buzzhome-chosenValue');
+    createToggle: function(){
 
 
-
-    //     $("#buzzhome-slider").slider({
-    //         min: 12,
-    //         max: 30,
-    //         animate: "slow",
-    //         range: "min",
-    //         value: slideAmount,
-
-    //         slide: function (event, ui) {
-    //             chosenPosition.css("opacity", "1");
-
-    //             $('.ui-slider-handle').html(chosenPosition); //attach chosenPosition to sliderhandle
-
-    //             display.html(ui.value);
-    //         },
-    //         stop: function (event, ui) {
-    //             chosenPosition.css("opacity", "0");
-    //             vis.setValue(dataoid, ui.value);
-    //         }
-    //     });
-
-    // },
+        $('.toggle').toggles({
+            click:false,
+            text: {
+                on: '00:23', 
+                off: 'OFF' 
+                },
+                width: 200, 
+                height: 70,
+                type: 'compact'
+        });
+    
+    },
+  
 
     setHighlightColor: function (PrimaryColor, invertColors) {
 
@@ -189,7 +178,7 @@ vis.binds.buzzhome.wateringventil = {
         var $TableHtml = '<table class="buzzhome-table" width="100%" height="100%">' +
             '<tr>' +
             '<td width="50%" height="100%" style="text-align:center;">' +
-            '<div class="toggle"></div>'
+            '<div style="height:50px; width:200px;" class="toggle toggle-modern"></div>'
         '</td>' +
             '<td width="50%" height="100%">' +
             '<span class="buzzhome-Label">Humidity: </span><span class="buzzhome-ValueSmall" id="humidity-value"> test </span><span class="buzzhome-Label"> %</span><br>' +
