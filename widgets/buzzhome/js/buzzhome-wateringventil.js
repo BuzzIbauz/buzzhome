@@ -43,6 +43,9 @@ vis.binds.buzzhome.wateringventil = {
         if (data['oid-state']) {
             vis.states.bind(data['oid-state'] + '.val', function (e, newVal, oldVal) {
                 data.runcountdown = newVal;
+                  
+               
+                
                 //$('#humidity-value').html(data.humidity);
                 //console.log("value oid-humidity changed - old: " + oldVal + " newValue: "+ newVal);
             });
@@ -51,8 +54,12 @@ vis.binds.buzzhome.wateringventil = {
         if (data['oid-runcountdown']) {
             vis.states.bind(data['oid-runcountdown'] + '.val', function (e, newVal, oldVal) {
                 data.runcountdown = newVal;
-                // $('#buzzhome-TemperatureValue').html(Math.round(data.actual));
-                //console.log("value oid-actual changed - old: " + oldVal + " newValue: "+ newVal);
+                  if (data.runcountdown === true){
+                        $('.toggle').toggle(true);
+                    }
+                    else
+                    $('.toggle').toggle(false);
+                console.log("value oid-runcountdown changed - old: " + oldVal + " newValue: "+ newVal);
             });
         }
 
@@ -80,6 +87,9 @@ vis.binds.buzzhome.wateringventil = {
 
 
 
+vis.setValue(data.countdown, 20);
+    vis.setValue(data.runcountdown.val, true);
+
 
         //HTML Zeichnen
         vis.binds.buzzhome.wateringventil.draw($div, $Title);
@@ -92,7 +102,7 @@ vis.binds.buzzhome.wateringventil = {
         // create slider
         //vis.binds.buzzhome.wandthermostat.createSlider($Value, data.oid);
 
-        vis.binds.buzzhome.wateringventil.createToggle();
+        vis.binds.buzzhome.wateringventil.createToggle(data.runcountdown, data.countdown);
 
 
 
@@ -103,19 +113,35 @@ vis.binds.buzzhome.wateringventil = {
 
     },
 
-    createToggle: function(){
+    createToggle: function(runcountdown, countdown){
 
 
         $('.toggle').toggles({
-            click:false,
+            drag: true, 
+            click: true,
+            on: runcountdown,
             text: {
-                on: '00:23', 
+                on: countdown, 
                 off: 'OFF' 
                 },
                 width: 200, 
                 height: 70,
                 type: 'compact'
         });
+
+$('.toggle').on('toggle', function(e, active) {
+  if (active) {
+      console.log(runcountdown, countdown, "AKTIV");
+      vis.setValue(countdown, 20);
+    vis.setValue(runcountdown.val, true);
+  } else {
+       console.log(runcountdown, countdown, "NICHT AKTIV");
+      vis.setValue(countdown, 0);
+     vis.setValue(runcountdown, false);
+  }
+});
+
+
     
     },
   
@@ -187,18 +213,11 @@ vis.binds.buzzhome.wateringventil = {
             ' </table>'
 
 
-        var $ToggleHtml = '<label class="switch"> ' +
-            '<input type="checkbox" checked="checked" />' +
-            '<div class="slider">' +
-            '</div>' +
-            '</label>'
 
 
 
 
-
-
-        container.append($TitleHtml + $TableHtml + $ToggleHtml);
+        container.append($TitleHtml + $TableHtml);
 
 
 
