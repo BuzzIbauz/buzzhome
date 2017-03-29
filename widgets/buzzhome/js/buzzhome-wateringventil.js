@@ -135,12 +135,12 @@ vis.binds.buzzhome.wateringventil = {
 $('.toggle').on('toggle', function(e, active) {
   if (active) {
         console.log(data.runcountdown, data.countdown, "AKTIV");
-        vis.setValue(data.countdown, "20");
-        vis.setValue(data.runcountdown, true);
+        vis.setValue(data['oid-countdown'], 20);
+        vis.setValue(data['oid-runcountdown'], true);
   } else {
         console.log(data.runcountdown, data.countdown, "NICHT AKTIV");
-        vis.setValue(data.countdown, 5);
-        vis.setValue(data.runcountdown, false);
+        vis.setValue(data['oid-countdown'], 5);
+        vis.setValue(data['oid-runcountdown'], false);
   }
 });
 
