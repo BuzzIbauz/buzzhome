@@ -53,23 +53,32 @@ vis.binds.buzzhome.wateringventil = {
 
         if (data['oid-runcountdown']) {
             vis.states.bind(data['oid-runcountdown'] + '.val', function (e, newVal, oldVal) {
-                data.runcountdown = newVal;
+                data.runcountdown = newVal; 
+
+                var ToggleSwitch = $('.toggle').data('toggles');
+                  
                   if (data.runcountdown === true){
-                        $('.toggle').toggle(true);
+                        ToggleSwitch.toggle(true);
                     }
-                    else
-                    $('.toggle').toggle(false);
-                console.log("value oid-runcountdown changed - old: " + oldVal + " newValue: "+ newVal);
+                  else{
+                   ToggleSwitch.toggle(false);
+                    }
+                    console.log("value oid-runcountdown changed - old: " + oldVal + " newValue: "+ newVal);
             });
         }
 
         if (data['oid-countdown']) {
             vis.states.bind(data['oid-countdown'] + '.val', function (e, newVal, oldVal) {
                 data.countdown = newVal;
-                //vis.binds.buzzhome.wandthermostat.updateWindowStatus(data.windowstate);
-                //console.log("value oid-windowstate changed - old: " + oldVal + " newValue: "+ newVal);
+
+                var ToggleSwitch = $('.toggle');
+
+                ToggleSwitch.toggleClass('text.on', data.countdown);
+
+                console.log("value oid-countdown changed - old: " + oldVal + " newValue: "+ newVal);
             });
         }
+
 
         if (data['oid-state']) data.state = vis.states.attr(data['oid-state'] + '.val');
         if (data['oid-runcountdown']) data.runcountdown = vis.states.attr(data['oid-runcountdown'] + '.val');
@@ -85,12 +94,6 @@ vis.binds.buzzhome.wateringventil = {
         var $invertColors = data.invertColors;
 
 
-
-
-        vis.setValue(data.countdown, 20);
-        vis.setValue(data.runcountdown, true);
-
-
         //HTML Zeichnen
         vis.binds.buzzhome.wateringventil.draw($div, $Title);
 
@@ -102,7 +105,7 @@ vis.binds.buzzhome.wateringventil = {
         // create slider
         //vis.binds.buzzhome.wandthermostat.createSlider($Value, data.oid);
 
-        vis.binds.buzzhome.wateringventil.createToggle(data.runcountdown, data.countdown);
+        vis.binds.buzzhome.wateringventil.createToggle(data);
 
 
 
@@ -113,31 +116,31 @@ vis.binds.buzzhome.wateringventil = {
 
     },
 
-    createToggle: function(runcountdown, countdown){
+    createToggle: function(data){
 
 
         $('.toggle').toggles({
             drag: true, 
             click: true,
-            on: runcountdown,
+            on: data.runcountdown,
             text: {
-                on: countdown, 
+                on: data.countdown, 
                 off: 'OFF' 
                 },
-                width: 200, 
-                height: 70,
-                type: 'compact'
+            width: 200, 
+            height: 70,
+            type: 'compact'
         });
 
 $('.toggle').on('toggle', function(e, active) {
   if (active) {
-      console.log(runcountdown, countdown, "AKTIV");
-      vis.setValue(countdown, 20);
-    vis.setValue(runcountdown, true);
+        console.log(data.runcountdown, data.countdown, "AKTIV");
+        vis.setValue(data.countdown, "20");
+        vis.setValue(data.runcountdown, true);
   } else {
-       console.log(runcountdown, countdown, "NICHT AKTIV");
-      vis.setValue(countdown, 0);
-     vis.setValue(runcountdown, false);
+        console.log(data.runcountdown, data.countdown, "NICHT AKTIV");
+        vis.setValue(data.countdown, 5);
+        vis.setValue(data.runcountdown, false);
   }
 });
 
