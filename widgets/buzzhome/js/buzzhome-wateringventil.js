@@ -71,9 +71,9 @@ vis.binds.buzzhome.wateringventil = {
             vis.states.bind(data['oid-countdown'] + '.val', function (e, newVal, oldVal) {
                 data.countdown = newVal;
 
-                var ToggleSwitch = $('.toggle');
+                var ToggleSwitch = $('.toggle-on');
 
-                ToggleSwitch.toggleClass('text.on', data.countdown);
+                ToggleSwitch.html(data.countdown);
 
                 console.log("value oid-countdown changed - old: " + oldVal + " newValue: "+ newVal);
             });
@@ -124,7 +124,7 @@ vis.binds.buzzhome.wateringventil = {
             click: true,
             on: data.runcountdown,
             text: {
-                on: data.countdown, 
+                on:   data['oid-countdown'] + '.val',
                 off: 'OFF' 
                 },
             width: 200, 
