@@ -90,7 +90,7 @@ vis.binds.buzzhome.wateringventil = {
             click: true,
             on: data.runcountdown,
             text: {
-                on: data['oid-countdown'] + '.val',
+                on: data.countdown,
                 off: 'OFF'
             },
             width: 200,
@@ -101,13 +101,7 @@ vis.binds.buzzhome.wateringventil = {
         $('.toggle').on('toggle', function (e, active) {
             if (active) {
                 //console.log(data.runcountdown, data.countdown, "AKTIV");
-                if (data.CountdownInMinutes == null) {
-                    vis.setValue(data['oid-countdown'], 15 * 60);
-                }
-                else {
-                    vis.setValue(data['oid-countdown'], data.CountdownInMinutes * 60);
-                }
-
+                vis.setValue(data['oid-countdown'], data.CountdownInMinutes * 60);
                 vis.setValue(data['oid-runcountdown'], true);
             }
             else {
