@@ -1,0 +1,20 @@
+     .gridcontainer {
+            overflow: auto;
+            position: relative;
+            height: 100%;
+        }
+        
+        .textwrapper {
+            display: table;
+        }
+        
+        .gridwrapper {
+            overflow: auto;
+            position: relative;
+            height: 100%;
+        }
+        
+        .gridcontent {
+            height: 100%;
+            float: left;
+        }

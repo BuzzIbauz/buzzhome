@@ -3,7 +3,7 @@
   
         init: function (wid, view, data, style, wType) {
 
-            var $div = $('#' + wid).addClass('buzzhome-wandthermostat-Root');
+            var $div = $('#' + wid).addClass('buzzhome-Root');
             if (!$div.length) {
                 setTimeout(function () {
                     vis.binds.buzzhome.wandthermostat.init(wid, view, data, style, wType);
@@ -112,7 +112,7 @@
             vis.binds.buzzhome.wandthermostat.draw($div, $Title, $Actual, $Value, $Humidity);
 
             //Farben zuweisen
-            vis.binds.buzzhome.wandthermostat.setHighlightColor($PrimaryColor, $invertColors);
+            vis.binds.buzzhome.wandthermostat.setHighlightColor($PrimaryColor, $invertColors, wid);
             //console.log($invertColors);
 
             // create slider
@@ -159,14 +159,14 @@
 
         },
 
-        setHighlightColor: function (PrimaryColor, invertColors) {
+        setHighlightColor: function (PrimaryColor, invertColors, wid) {
 
             var Color1 = PrimaryColor;
             var Color2 = vis.binds.buzzhome.colorFunctions.ColorLuminance(PrimaryColor, -0.3);
             var BoxshadowColor = vis.binds.buzzhome.colorFunctions.getDropshadowColor(PrimaryColor, 0.2)
 
 
-            var Root = $(".buzzhome-wandthermostat-Root");
+            var Root = $("#" + wid);
             var Title = $("#buzzhome-Title");
             var TemperatureValue = $("#buzzhome-TemperatureValue");
             var SetTemperature = $("#buzzhome-SetTemperature");

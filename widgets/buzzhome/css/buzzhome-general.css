@@ -1,0 +1,67 @@
+/*++++++++++++++++++++++Fonts++++++++++++++++*/
+@font-face {
+    font-family: 'RobotoCondensed-Light'; 
+    src: url('widgets/buzzhome/fonts/RobotoCondensed-Light.ttf'); 
+	}
+
+@font-face {
+    font-family: 'OpenSans-CondLight'; 
+    src: url('widgets/buzzhome/fonts/OpenSans-CondLight.ttf'); 
+	}
+
+.buzzhome-Title {
+    transform: rotate(-90deg);
+    opacity:0.2;
+	position:absolute;
+    color:#a57c34;
+    font-family:"RobotoCondensed-Light";
+    font-size:30pt;
+	left:-150px;
+	bottom:176px;
+    width:335px;
+	}
+
+.buzzhome-ValueSmall {
+    color:#a57c34;
+    font-family:"OpenSans-CondLight";
+    font-size:28pt;
+	}
+	
+.buzzhome-Value {
+    color:#a57c34;
+    font-family:"OpenSans-CondLight";
+    font-size:150pt;
+	}
+		
+.buzzhome-Label {
+    color:#b2b2b2;
+    font-family:"RobotoCondensed-Light";
+    font-size:28pt;
+    }
+
+.buzzhome-SetLabel {
+    color:#b2b2b2;
+    font-family:"RobotoCondensed-Light";
+    font-size:28pt;
+    }
+	
+.buzzhome-SetTemperature {
+    color:#a57c34;
+    font-family:"OpenSans-CondLight";
+    font-size:28pt;
+    }
+
+
+.buzzhome-table {
+    border-collapse: separate;
+    border-spacing: 0px;
+	margin-bottom: -32px
+	}
+	
+
+.buzzhome-Root {
+	background:#FFFFFF;
+	width:670px;
+	height:335px;
+	box-shadow:0px 0px 15px rgba(165, 124, 52, 0.20);
+	}

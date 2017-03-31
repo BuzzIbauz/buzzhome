@@ -5,7 +5,7 @@ vis.binds.buzzhome.wetter = {
 
     init: function (wid, view, data, style, wType) {
 
-        var $div = $('#' + wid).addClass('buzzhome-wetter-Root');
+        var $div = $('#' + wid).addClass('buzzhome-Root');
         if (!$div.length) {
             setTimeout(function () {
                 vis.binds.buzzhome.wetter.init(wid, view, data, style, wType);
@@ -310,7 +310,7 @@ vis.binds.buzzhome.wetter = {
         vis.binds.buzzhome.wetter.setWindDirection(data.windrichtg);
 
         // Farben setzen
-        vis.binds.buzzhome.wetter.setHighlightColor($PrimaryColor, $invertColors);
+        vis.binds.buzzhome.wetter.setHighlightColor($PrimaryColor, $invertColors, wid);
 
     },
 
@@ -398,7 +398,7 @@ vis.binds.buzzhome.wetter = {
 
     },
 
-    setHighlightColor: function (PrimaryColor, invertColors) {
+    setHighlightColor: function (PrimaryColor, invertColors, wid) {
 
 console.log(PrimaryColor+invertColors);
 
@@ -410,7 +410,7 @@ console.log(PrimaryColor+invertColors);
 
 
 
-        var Root = $(".buzzhome-wetter-Root");
+        var Root = $("#" + wid);
         var Title = $("#buzzhome-wetter-Title");
         var WetterIcon = $("#buzzhome-wetter-icon");
         var Temperature = $("#buzzhome-wetter-TemperatureValue");

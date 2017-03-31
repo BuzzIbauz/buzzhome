@@ -1,0 +1,65 @@
+
+#buzzhome-wetter-icon {
+	fill: #a57c34;
+    height: 100px;
+    width: 100px;
+	}
+
+
+#buzzhome-forecast-icon1 {
+	fill: #a57c34;
+    height: 24px;
+    width: 24px;
+	vertical-align: middle;
+	}
+
+	#buzzhome-forecast-icon2 {
+	fill: #a57c34;
+    height: 24px;
+    width: 24px;
+	vertical-align: middle;
+	}
+
+	#buzzhome-forecast-icon3 {
+	fill: #a57c34;
+    height: 24px;
+    width: 24px;
+	vertical-align: middle;
+	}
+
+	#buzzhome-forecast-icon4 {
+	fill: #a57c34;
+    height: 24px;
+    width: 24px;
+	vertical-align: middle;
+	}
+
+	#buzzhome-windrotate-icon {
+	height:28px; 
+	width:28px; 
+	fill: #a57c34; 
+	position:absolute;
+	}
+
+	#buzzhome-windrose {
+	height:28px; 
+	fill: #b2b2b2; 
+	width:28px; 
+	position:absolute;
+	}
+
+	#buzzhome-windrotate-container {
+	height: 28px;
+	width: 28px;
+	vertical-align: middle;
+    position: absolute;
+    margin-top: 13px;
+    margin-left: 18px;
+	}
+
+.buzzhome-forecast-Label {
+    color:#ffffff;
+    font-family:"RobotoCondensed-Light";
+    font-size:13pt;
+	vertical-align: middle;
+    }
