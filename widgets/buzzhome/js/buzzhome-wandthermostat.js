@@ -310,7 +310,7 @@
 
 
             var $SliderHtml = '<div id="buzzhome-SliderContainer">' +
-                '<div id="'+ SliderContainerId + '">' +
+                '<div style="position: absolute; z-index: 100;" id="'+ SliderContainerId + '">' +
                 '</div>' +
 
                 '<div id="buzzhome-SliderBackground"> </div>' +

@@ -120,11 +120,6 @@
 	left:32px;
 	}
 
-#buzzhome-slider {
-	position:absolute;
-	z-index:100;
-	}
-
 #buzzhome-chosen {
 	position:absolute;
 	z-index:1;
