@@ -33,7 +33,7 @@
                     //console.log("value SetTemperature changed - old: " + oldVal + " newValue: "+ newVal);
                     data.value = newVal
                     $('#buzzhome-SetTemperature').html(data.value + '&ordm;C');
-                    $("#buzzhome-slider").slider('value', data.value)
+                    $("#" +  wid + "slider").slider('value', data.value)
 
                 });
             }
@@ -103,20 +103,21 @@
             var $Humidity = (data.humidity).toString().replace('.', ',');
             var $PrimaryColor = data.maincolor;
             var $invertColors = data.invertColors;
+            var SliderContainerId = wid + "slider";
 
 
 
 
 
             //HTML Zeichnen
-            vis.binds.buzzhome.wandthermostat.draw($div, $Title, $Actual, $Value, $Humidity);
+            vis.binds.buzzhome.wandthermostat.draw($div, $Title, $Actual, $Value, $Humidity, SliderContainerId);
 
             //Farben zuweisen
-            vis.binds.buzzhome.wandthermostat.setHighlightColor($PrimaryColor, $invertColors, wid);
+            vis.binds.buzzhome.wandthermostat.setHighlightColor($PrimaryColor, $invertColors, wid, SliderContainerId);
             //console.log($invertColors);
 
             // create slider
-            vis.binds.buzzhome.wandthermostat.createSlider($Value, data.oid);
+            vis.binds.buzzhome.wandthermostat.createSlider($Value, data.oid, SliderContainerId);
 
             // update BatteryIndicator
             vis.binds.buzzhome.wandthermostat.updateBatteryStatus(data.battery);
@@ -130,14 +131,14 @@
 
         },
 
-        createSlider: function (slideAmount, dataoid) {
+        createSlider: function (slideAmount, dataoid, SliderContainerId) {
 
             var chosenPosition = $('#buzzhome-chosen');
             var display = $('#buzzhome-chosenValue');
 
 
 
-            $("#buzzhome-slider").slider({
+            $("#" + SliderContainerId).slider({
                 min: 12,
                 max: 30,
                 animate: "slow",
@@ -159,7 +160,7 @@
 
         },
 
-        setHighlightColor: function (PrimaryColor, invertColors, wid) {
+        setHighlightColor: function (PrimaryColor, invertColors, wid, SliderContainerId) {
 
             var Color1 = PrimaryColor;
             var Color2 = vis.binds.buzzhome.colorFunctions.ColorLuminance(PrimaryColor, -0.3);
@@ -215,7 +216,7 @@
 
                 $("#buzzhome-chosenValue").css("color", vis.binds.buzzhome.colorFunctions.getForegroundColor(PrimaryColor));
 
-                $("#buzzhome-slider .ui-slider-range").css("backgroundImage", "linear-gradient(" + Color2 + " 0%," + PrimaryColor + " 15%)");
+                $("#" + SliderContainerId + " .ui-slider-range").css("backgroundImage", "linear-gradient(" + Color2 + " 0%," + PrimaryColor + " 15%)");
 
                 TemperatureValue.css("color", PrimaryColor);
 
@@ -285,14 +286,14 @@
 
         },
 
-        draw: function (container, title, actual, value, humidity) {
+        draw: function (container, title, actual, value, humidity, SliderContainerId) {
             //Hier wird das HTML zusammengebaut und an den Container übergeben
             var $SetTemperatureValueHtml = '<div id="buzzhome-SetTemperatureContainer">' +
                 '<span id="buzzhome-SetLabel" class="buzzhome-SetLabel">SET:</span>' +
                 '<span id="buzzhome-SetTemperature" class="buzzhome-SetTemperature">' + value + '&ordm;C</span>' +
                 '</div>';
 
-            var $TitleHtml = '<span id="buzzhome-Title" class="buzzhome-Title">' + title + '</span>';
+            var $TitleHtml = '<span id="buzzhome-Title" class="buzzhome-TitleHigh">' + title + '</span>';
 
             var $TableHtml = '<table class="buzzhome-table" width="100%" height="100%">' +
                 '<tr>' +
@@ -309,7 +310,7 @@
 
 
             var $SliderHtml = '<div id="buzzhome-SliderContainer">' +
-                '<div id="buzzhome-slider">' +
+                '<div id="'+ SliderContainerId + '">' +
                 '</div>' +
 
                 '<div id="buzzhome-SliderBackground"> </div>' +

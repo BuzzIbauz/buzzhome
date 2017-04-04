@@ -9,7 +9,7 @@
     src: url('widgets/buzzhome/fonts/OpenSans-CondLight.ttf'); 
 	}
 
-.buzzhome-Title {
+.buzzhome-TitleHigh {
     transform: rotate(-90deg);
     opacity:0.2;
 	position:absolute;
@@ -18,6 +18,18 @@
     font-size:30pt;
 	left:-150px;
 	bottom:176px;
+    width:335px;
+	}
+
+    .buzzhome-Title {
+    transform: rotate(-90deg);
+    opacity:0.2;
+	position:absolute;
+    color:#a57c34;
+    font-family:"RobotoCondensed-Light";
+    font-size:30pt;
+	left:-150px;
+	bottom:145px;
     width:335px;
 	}
 

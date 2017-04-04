@@ -35,7 +35,7 @@ vis.binds.buzzhome.wateringventil = {
         if (data['oid-runcountdown']) {
             vis.states.bind(data['oid-runcountdown'] + '.val', function (e, newVal, oldVal) {
                 data.runcountdown = newVal;
-                var ToggleSwitch = $('.toggle').data('toggles');
+                var ToggleSwitch = $('#' + ToggleContainerId).data('toggles');
 
                 if (data.runcountdown === true) {
                     ToggleSwitch.toggle(true);
@@ -68,24 +68,25 @@ vis.binds.buzzhome.wateringventil = {
         var $PrimaryColor = data.maincolor;
         var $invertColors = data.invertColors;
         var $CountdownInMinutes = data.CountdownInMinutes;
+        var ToggleContainerId = wid + "toggle";
 
 
         //HTML Zeichnen
-        vis.binds.buzzhome.wateringventil.draw($div, $Title);
+        vis.binds.buzzhome.wateringventil.draw($div, $Title,ToggleContainerId);
 
 
         //Farben zuweisen
         // vis.binds.buzzhome.wandthermostat.setHighlightColor($PrimaryColor, $invertColors, wid);
         //console.log($invertColors);
 
-        vis.binds.buzzhome.wateringventil.createToggle(data);
+        vis.binds.buzzhome.wateringventil.createToggle(data,ToggleContainerId);
 
 
     },
 
-    createToggle: function (data) {
+    createToggle: function (data, ToggleContainerId) {
 
-        $('.toggle').toggles({
+        $('#' + ToggleContainerId).toggles({
             drag: true,
             click: true,
             on: data.runcountdown,
@@ -98,7 +99,7 @@ vis.binds.buzzhome.wateringventil = {
             type: 'compact'
         });
 
-        $('.toggle').on('toggle', function (e, active) {
+          $('#' + ToggleContainerId).on('toggle', function (e, active) {
             if (active) {
                 //console.log(data.runcountdown, data.countdown, "AKTIV");
                 vis.setValue(data['oid-countdown'], data.CountdownInMinutes * 60);
@@ -157,7 +158,7 @@ vis.binds.buzzhome.wateringventil = {
     },
 
 
-    draw: function (container, title) {
+    draw: function (container, title, ToggleContainerId) {
         //Hier wird das HTML zusammengebaut und an den Container übergeben
 
         var $TitleHtml = '<span id="buzzhome-Title" class="buzzhome-Title">' + title + '</span>';
@@ -176,7 +177,7 @@ vis.binds.buzzhome.wateringventil = {
             '</div>' +
             '</div>' +
             '<div class="gridcontent" style="width:50%;">' +
-            '<div class="toggle toggle-modern" style="height: 145px; width: 390px; position: absolute; right: 52px; top: 50%; transform: translate(0%, -50%);" />' +
+            '<div id="' + ToggleContainerId + '" class="toggle toggle-modern" style="height: 145px; width: 390px; position: absolute; right: 52px; top: 50%; transform: translate(0%, -50%);" />' +
             '</div>' +
             '</div>'
 

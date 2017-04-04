@@ -321,7 +321,7 @@ vis.binds.buzzhome.wetter = {
     draw: function (container, title, temperature, luftfeuchte, luftdruck, windgeschwindigkeit, wetterstation, iconPath, pop, qpf, iconPathFct1, iconPathFct2, iconPathFct3, iconPathFct4, weekday1, weekday2, weekday3, weekday4, high1, high2, high3, high4, low1, low2, low3, low4) {
         //Hier wird das HTML zusammengebaut und an den Container übergeben
 
-        var $TitleHtml = '<span id="buzzhome-wetter-Title" class="buzzhome-Title">' + title + '</span>';
+        var $TitleHtml = '<span id="buzzhome-wetter-Title" class="buzzhome-TitleHigh">' + title + '</span>';
 
         var $TableHtml = '<table class="buzzhome-table" width="100%" height="100%">' +
             '<tr>' +
