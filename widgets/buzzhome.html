@@ -11,6 +11,7 @@
 <link rel="stylesheet" href="widgets/buzzhome/css/buzzhome-wetter.css" />
 <link rel="stylesheet" href="widgets/buzzhome/css/buzzhome-wateringventil.css" />
 <link rel="stylesheet" href="widgets/buzzhome/Plugins/jquery-toggles-master/css/toggles-full.css" />
+<link rel="stylesheet" href="widgets/buzzhome/css/buzzhome-climateoverview.css" />
 <!-- here you can include so many js-files as you want -->
 
 <script type="text/javascript" src="widgets/buzzhome/js/buzzhome.js"></script>
@@ -18,6 +19,7 @@
 <script type="text/javascript" src="widgets/buzzhome/js/buzzhome-wetter.js"></script>
 <script type="text/javascript" src="widgets/buzzhome/js/buzzhome-wateringventil.js"></script>
 <script type="text/javascript" src="widgets/buzzhome/Plugins/jquery-toggles-master/toggles.js"></script>
+<script type="text/javascript" src="widgets/buzzhome/js/buzzhome-climateoverview.js"></script>
 
 
 <!-- the full description of format in data-vis-attrs can be found here:
@@ -121,7 +123,7 @@
                         invertColors/checkbox;
                         Title:text;" data-vis-attrs0="group.extraBuzzhome-wandthermostat;extraAttr" data-vis-name="buzzhome-wandthermostat"
     data-vis-type="ctrl,temperature">
-    <div class="vis-widget <%== this.data.attr('class') %>" style="overflow:visible; width: 1040px; height: 510px;" id="<%= this.data.attr('wid') %>">
+    <div class="vis-widget <%== this.data.attr('class') %>" style="overflow:visible; width: 680px; height: 330px;" id="<%= this.data.attr('wid') %>">
         <%
         vis.binds.buzzhome.wandthermostat.init(this.data.wid, this.view, this.data, this.style);
         %>
@@ -165,7 +167,7 @@
                         maincolor:color;
                         invertColors/checkbox;
                         Title:text;" data-vis-name="buzzhome-wetter" data-vis-type="ctrl,temperature">
-    <div class="vis-widget <%== this.data.attr('class') %>" style="overflow:visible; width: 1040px; height: 510px;" id="<%= this.data.attr('wid') %>">
+    <div class="vis-widget <%== this.data.attr('class') %>" style="overflow:visible; width: 680px; height: 330px;" id="<%= this.data.attr('wid') %>">
         <%
         vis.binds.buzzhome.wetter.init(this.data.wid, this.view, this.data, this.style);
         %>
@@ -178,15 +180,49 @@
     data-vis-attrs="    oid-state/id;
                         oid-runcountdown/id;
                         oid-countdown/id;
+                        oid-timestamp/id;
                         CountdownInMinutes:number;
                         maincolor:color;
                         invertColors/checkbox;
                         Title:text;" 
     data-vis-name="buzzhome-wateringventil"
     data-vis-type="ctrl">
-    <div class="vis-widget <%== this.data.attr('class') %>" style="overflow:visible; width: 1040px; height: 245px;" id="<%= this.data.attr('wid') %>">
+    <div class="vis-widget <%== this.data.attr('class') %>" style="overflow:visible; width: 680px; height: 155px;" id="<%= this.data.attr('wid') %>">
         <%
         vis.binds.buzzhome.wateringventil.init(this.data.wid, this.view, this.data, this.style);
+        %>
+    </div>
+</script>
+
+
+<script id="tplBuzzhome-climateoverviewShowInstance" type="text/ejs" class="vis-tpl" data-vis-set="buzzhome" data-vis-prev='<div id="prev_tplBuzzhome-wandthermostatShowInstance" style="position: relative; text-align: initial; padding: 4px "><div class="vis-widget_prev buzzhome-Root" style="overflow: visible; width: 672px; height: 365px; left: 25px; top: 13px; position: absolute; box-shadow: rgb(165, 124, 52) 0px 0px 20px; background-color: rgb(255, 255, 255);" > <span id="buzzhome-Title" class="buzzhome-Title" style="color: rgb(165, 124, 52);">WOHNKÜCHE</span><div id="buzzhome-SetTemperatureContainer"><span id="buzzhome-SetLabel" class="buzzhome-SetLabel">SET:</span><span id="buzzhome-SetTemperature" class="buzzhome-SetTemperature" style="color: rgb(165, 124, 52);">0ºC</span></div><table class="buzzhome-table" width="100%" height="90%"><tbody><tr><td width="50%" height="100%" style="text-align:center;"><span id="buzzhome-TemperatureValue" class="buzzhome-Value" data-oid="" style="color: rgb(165, 124, 52);">22</span><span class="buzzhome-ValueSmall" style="color: rgb(165, 124, 52);">ºC</span></td><td width="50%" height="100%"><span class="buzzhome-Label">Humidity: </span><span class="buzzhome-ValueSmall" id="humidity-value" style="color: rgb(165, 124, 52);">71</span><span class="buzzhome-Label"> %</span><br><span class="buzzhome-Label">Window: </span><span class="buzzhome-ValueSmall" id="windowstate-value" style="color: rgb(165, 124, 52);">closed</span><br><span class="buzzhome-Label">Mode: </span><span class="buzzhome-ValueSmall" id="mode-value" style="color: rgb(165, 124, 52);">auto</span><br></td> </tr> </tbody></table><div id="buzzhome-SliderContainer"><div id="buzzhome-slider" class="ui-slider ui-slider-horizontal ui-widget ui-widget-content ui-corner-all"><div class="ui-slider-range ui-widget-header ui-corner-all ui-slider-range-min" style="width: 0%;"></div><span class="ui-slider-handle ui-state-default ui-corner-all" tabindex="0" style="left: 0%;"></span></div><div id="buzzhome-SliderBackground"> </div><div id="buzzhome-chosen"><svg id="buzzhome-ChosenSVG" class="buzzhome-ChosenSVG" viewBox="0 0 36.154 44.077" fill="#745724"><path d="M0,27.891V0l36.154,44.077L0,27.891z"></path></svg><div id="buzzhome-chosenBorder" style="background-color: rgb(165, 124, 52);"></div><span id="buzzhome-chosenValue" style="color: rgb(255, 255, 255);"></span> </div> </div><svg id="buzzhome-BatteryIndicator" viewBox="0 0 28 28"><path d="M27,8v12H4v-3H1v-6h3V8h17.8L21,10H6v8h14l3-8l0.8-2H27z"></path></svg></div></div>'
+    data-vis-attrs="   
+                        oid-actualmain/id,value.temperature/changedTemperatureId;
+                        oid-batterymain/id,indicator.battery;
+                        oid-windowstatemain/id;
+
+                        oid-actual1/id,value.temperature/changedTemperatureId;
+                        oid-battery1/id,indicator.battery;
+                        oid-windowstate1/id;
+
+                        oid-actual2/id,value.temperature/changedTemperatureId;
+                        oid-battery2/id,indicator.battery;
+                        oid-windowstate2/id;
+
+                        oid-actual3/id,value.temperature/changedTemperatureId;
+                        oid-battery3/id,indicator.battery;
+                        oid-windowstate3/id;
+
+                        oid-viewLink/id;
+
+                        maincolor:color;
+                        invertColors/checkbox;
+                        Title:text;" 
+    data-vis-name="buzzhome-climateoverview"
+    data-vis-type="ctrl">
+    <div class="vis-widget <%== this.data.attr('class') %>" style="overflow:visible; width: 680px; height: 330px;" id="<%= this.data.attr('wid') %>">
+        <%
+        vis.binds.buzzhome.climateoverview.init(this.data.wid, this.view, this.data, this.style);
         %>
     </div>
 </script>

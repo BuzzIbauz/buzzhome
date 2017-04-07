@@ -1,0 +1,77 @@
+  .gridcontainer {
+            overflow: auto;
+            position: relative;
+            height: 100%;
+        }
+        
+        .textwrapper {
+            display: table;
+        }
+        
+        .gridwrapper {
+            overflow: auto;
+            position: relative;
+            height: 100%;
+        }
+        
+        .gridcontent {
+            height: 100%;
+            float: left;
+        }
+        
+        .listitem {
+            width: 100%;
+            float: left;
+            position: relative;
+            height: 25%;
+        }
+        
+        .listitemtextwrapper {
+            position: relative;
+            left: 10%;
+            width: 80%;
+            top: 50%;
+            transform: translate(0, -50%);
+        }
+        
+        .seperator {
+            height: 0.2%;
+            position: relative;
+            left: 8%;
+            width: 84%;
+            top: 99.5%;
+            background: white;
+            opacity: 0.4;
+        }
+        
+        .morebutton {
+            position: absolute;
+            right: 0;
+            bottom: 0;
+        }
+        
+        .buzzhome-moreLabel {
+            color: #FFFFFF;
+            font-family: "RobotoCondensed-Light";
+            font-size: 28pt;
+        }
+        
+        .buzzhome-smallLabel {
+            color: #b2b2b2;
+            font-family: "RobotoCondensed-Light";
+            font-size: 16pt;
+        }
+        
+        .horizontal {
+            margin: 0;
+            padding: 0;
+        }
+        
+        .horizontal li {
+            display: inline-block;
+        }
+        
+        #buzzhome-SmallListIndicator {
+            height: 40px;
+            width: 40px;
+        }

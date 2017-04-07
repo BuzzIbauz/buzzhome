@@ -35,6 +35,7 @@ vis.binds.buzzhome.wateringventil = {
         if (data['oid-runcountdown']) {
             vis.states.bind(data['oid-runcountdown'] + '.val', function (e, newVal, oldVal) {
                 data.runcountdown = newVal;
+
                 var ToggleSwitch = $('#' + ToggleContainerId).data('toggles');
 
                 if (data.runcountdown === true) {
@@ -51,11 +52,19 @@ vis.binds.buzzhome.wateringventil = {
             vis.states.bind(data['oid-countdown'] + '.val', function (e, newVal, oldVal) {
                 data.countdown = newVal;
 
-                var ToggleSwitch = $('.toggle-on');
-
+                var ToggleSwitch = $('#' + ToggleContainerId + ' .toggle-on');
                 ToggleSwitch.html(vis.binds.buzzhome.wateringventil.secToStr(data.countdown));
 
                 console.log("value oid-countdown changed - old: " + oldVal + " newValue: " + newVal);
+            });
+        }
+
+        if (data['oid-timestamp']) {
+            vis.states.bind(data['oid-timestamp'] + '.val', function (e, newVal, oldVal) {
+                data.timestamp = newVal;
+
+                vis.binds.buzzhome.wateringventil.setTimeStamp(data.timestamp, wid);
+
             });
         }
 
@@ -63,6 +72,7 @@ vis.binds.buzzhome.wateringventil = {
         if (data['oid-state']) data.state = vis.states.attr(data['oid-state'] + '.val');
         if (data['oid-runcountdown']) data.runcountdown = vis.states.attr(data['oid-runcountdown'] + '.val');
         if (data['oid-countdown']) data.countdown = vis.states.attr(data['oid-countdown'] + '.val');
+        if (data['oid-timestamp']) data.timestamp = vis.states.attr(data['oid-timestamp'] + '.val');
 
         var $Title = (data.Title).toString();
         var $PrimaryColor = data.maincolor;
@@ -72,14 +82,16 @@ vis.binds.buzzhome.wateringventil = {
 
 
         //HTML Zeichnen
-        vis.binds.buzzhome.wateringventil.draw($div, $Title,ToggleContainerId);
+        vis.binds.buzzhome.wateringventil.draw($div, $Title, ToggleContainerId, wid);
 
 
         //Farben zuweisen
         // vis.binds.buzzhome.wandthermostat.setHighlightColor($PrimaryColor, $invertColors, wid);
         //console.log($invertColors);
 
-        vis.binds.buzzhome.wateringventil.createToggle(data,ToggleContainerId);
+        vis.binds.buzzhome.wateringventil.createToggle(data, ToggleContainerId);
+
+        vis.binds.buzzhome.wateringventil.setTimeStamp(data.timestamp, wid);
 
 
     },
@@ -99,7 +111,7 @@ vis.binds.buzzhome.wateringventil = {
             type: 'compact'
         });
 
-          $('#' + ToggleContainerId).on('toggle', function (e, active) {
+        $('#' + ToggleContainerId).on('toggle', function (e, active) {
             if (active) {
                 //console.log(data.runcountdown, data.countdown, "AKTIV");
                 vis.setValue(data['oid-countdown'], data.CountdownInMinutes * 60);
@@ -112,6 +124,26 @@ vis.binds.buzzhome.wateringventil = {
             }
         });
     },
+
+
+    setTimeStamp: function (timestamp, wid) {
+
+
+        var a = new Date(timestamp);
+        var months = ['01', '02', '03', '04', '05', '06', '07', '08', '09', '10', '11', '12'];
+        var year = a.getFullYear();
+        var month = months[a.getMonth()];
+        var date = vis.binds.buzzhome.formatFunctions.addZero(a.getDate());
+        var hour = vis.binds.buzzhome.formatFunctions.addZero(a.getHours());
+        var min = vis.binds.buzzhome.formatFunctions.addZero(a.getMinutes());
+        var sec = vis.binds.buzzhome.formatFunctions.addZero(a.getSeconds());
+
+
+        $("#Date" + wid).html(date + '.' + month + '.' + year);
+        $("#Time" + wid).html(hour + ':' + min + ':' + sec);
+
+    },
+
 
 
     setHighlightColor: function (PrimaryColor, invertColors) {
@@ -158,7 +190,7 @@ vis.binds.buzzhome.wateringventil = {
     },
 
 
-    draw: function (container, title, ToggleContainerId) {
+    draw: function (container, title, ToggleContainerId, wid) {
         //Hier wird das HTML zusammengebaut und an den Container übergeben
 
         var $TitleHtml = '<span id="buzzhome-Title" class="buzzhome-Title">' + title + '</span>';
@@ -171,9 +203,9 @@ vis.binds.buzzhome.wateringventil = {
             '</div>' +
             '<div class="gridcontent" style="width:25%;">' +
             '<div class="textwrapper" style="position: absolute; left: 25%; top: 50%; transform: translate(0, -50%);">' +
-            '<span class="buzzhome-Label">12.03.2017 </span> <br>' +
+            '<span id="Date' + wid + '" class="buzzhome-Label">12.03.2017 </span> <br>' +
 
-            '<span class="buzzhome-ValueSmall"> 15 min </span>' +
+            '<span id="Time' + wid + '" class="buzzhome-ValueSmall"> 15 min </span>' +
             '</div>' +
             '</div>' +
             '<div class="gridcontent" style="width:50%;">' +
