@@ -1,0 +1,129 @@
+       ul {
+            list-style-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='24px' height='24px' viewBox='0 0 17 24' preserveAspectRatio='xMidYMid meet'><path d='M8,24H0l9-12L0,0l8,0l9,12L8,24z' fill='#a57c34'/></svg>");
+        }
+        
+        #ContentArea #listUser {
+            max-height: 0;
+            transition: max-height 0.3s;
+            overflow: hidden;
+            -webkit-margin-before: 0;
+            -webkit-margin-after: 0;
+        }
+        
+        #ContentArea #listNotification {
+            max-height: 0;
+            transition: max-height 0.3s;
+            overflow: hidden;
+            -webkit-margin-before: 0;
+            -webkit-margin-after: 0;
+        }
+        
+        #listNotification {
+            margin-top: 20px;
+            margin-bottom: 20px;
+        }
+        /*END TEST AREA*/
+        
+        .gridcontainer {
+            overflow: auto;
+            position: relative;
+            height: 100%;
+        }
+        
+        .gridwrapper {
+            overflow: auto;
+            position: relative;
+            height: 100%;
+        }
+        
+        .gridcontent {
+            height: 100%;
+            float: left;
+        }
+        
+        .NotificationSeperator {
+            height: 4px;
+            background: #a57c34;
+            margin-top: -4px;
+            margin-left: -20px;
+        }
+        
+        .buzzhome-NumberLabel {
+            color: #FFFFFF;
+            font-family: "RobotoCondensed-Light";
+            font-size: 9pt;
+            position: relative;
+            top: 3px;
+        }
+        
+        .horizontal {
+            margin: 0;
+            padding: 0;
+        }
+        
+        .horizontal li {
+            display: inline-block;
+        }
+        
+        .NotificationWrapper {
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+        
+        .buzzhome-NotificationIcons {
+            height: 40px;
+            width: 40px;
+            margin: 14px;
+        }
+        
+        .buzzhome-NotificationIconsContainer {
+            height: 68px;
+            width: 68px;
+        }
+        
+        .buzzhome-RedCircleContainer {
+            text-align: center;
+            height: 20px;
+            width: 20px;
+            border-radius: 20px;
+            background: red;
+            position: absolute;
+            right: 4px;
+            top: 30px;
+            border-color: white;
+            border-style: solid;
+            border-width: 3px;
+        }
+        
+        #ContentArea {
+            width: 100%;
+            box-shadow: 0px 0px 15px rgba(165, 124, 52, 0.50);
+            background: white;
+            height: auto;
+            margin-top: 68px;
+        }
+        
+        #UserList {
+            width: 100%;
+            max-height: 0px;
+            transition: max-height 0.15s ease-out;
+        }
+        
+        #NotificationSeperatorLonger1 {
+            position: absolute;
+            height: 4px;
+            width: 10%;
+            right: 0px;
+            top: 68px;
+            background: #a57c34;
+            transition: width 0.1s 0.3s ease-out;
+        }
+        
+        #NotificationSeperatorLonger2 {
+            position: absolute;
+            height: 4px;
+            width: 10%;
+            right: 0px;
+            top: 68px;
+            background: #a57c34;
+            transition: width 0.1s ease-out;
