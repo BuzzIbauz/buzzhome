@@ -1,23 +1,9 @@
-  .gridcontainer {
-            overflow: auto;
-            position: relative;
-            height: 100%;
-        }
+
         
         .textwrapper {
             display: table;
         }
         
-        .gridwrapper {
-            overflow: auto;
-            position: relative;
-            height: 100%;
-        }
-        
-        .gridcontent {
-            height: 100%;
-            float: left;
-        }
         
         .listitem {
             width: 100%;
@@ -43,22 +29,6 @@
             background: white;
             opacity: 0.4;
         }
-        
-        .morebutton {
-            position: absolute;
-            right: -4px;
-            background: none;
-            margin: 0;
-            border:0;
-            padding:0;
-            bottom: -4px;
-        }
-        
-        .buzzhome-moreLabel {
-            color: #FFFFFF;
-            font-family: "RobotoCondensed-Light";
-            font-size: 28pt;
-        }
 
         .buzzhome-moreIcon{
                 height: 35px;
@@ -74,14 +44,6 @@
             font-size: 16pt;
         }
         
-        .horizontal {
-            margin: 0;
-            padding: 0;
-        }
-        
-        .horizontal li {
-            display: inline-block;
-        }
         
         .buzzhome-SmallListIndicator {
             height: 40px;

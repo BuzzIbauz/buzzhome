@@ -21,7 +21,7 @@
     width:335px;
 	}
 
-    .buzzhome-Title {
+.buzzhome-Title {
     transform: rotate(-90deg);
     opacity:0.2;
 	position:absolute;
@@ -77,3 +77,47 @@
 	height:335px;
 	box-shadow:0px 0px 15px rgba(165, 124, 52, 0.20);
 	}
+
+
+    .gridcontainer {
+            overflow: auto;
+            position: relative;
+            height: 100%;
+        }
+             
+        
+        .gridwrapper {
+            overflow: auto;
+            position: relative;
+            height: 100%;
+        }
+        
+        .gridcontent {
+            height: 100%;
+            float: left;
+        }
+
+         .horizontal {
+            margin: 0;
+            padding: 0;
+        }
+        
+        .horizontal li {
+            display: inline-block;
+        }
+
+             .morebutton {
+            position: absolute;
+            right: -4px;
+            background: none;
+            margin: 0;
+            border:0;
+            padding:0;
+            bottom: -4px;
+        }
+
+         .buzzhome-moreLabel {
+            color: #FFFFFF;
+            font-family: "RobotoCondensed-Light";
+            font-size: 28pt;
+        }

@@ -127,3 +127,36 @@
             top: 68px;
             background: #a57c34;
             transition: width 0.1s ease-out;
+        }
+
+        .personimage {
+            height:150px;
+            width: auto;
+        }
+
+        .personcontainer {
+           height:150px; 
+           width: 150px;
+           overflow: hidden;
+        
+        }
+
+        .homebutton {
+            position: absolute;
+            left: -8px;
+            top: -20px;
+            background: none;
+            margin: 0;
+            border:0;
+            padding:0;
+        }
+        
+        .buzzhome-HomeLabel {
+            color: #a57c34;
+            opacity: 0.08;
+            top: -4px;
+            /* margin-left: 132px; */
+            font-family: "RobotoCondensed-Light";
+            font-size: 76pt;
+            position: relative;
+        }
