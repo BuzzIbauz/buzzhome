@@ -146,7 +146,7 @@ vis.binds.buzzhome.statusview = {
                 NotificationIcon.css("fill", "#a57c34");
                 NotificationBorder.css("background", "transparent");
                 UserIcon.css("fill", "#a57c34");
-                UserBorder.css("background", "#transparent");
+                UserBorder.css("background", "transparent");
 
                 IsContentOpenUser = false;
                 IsContentOpenNotification = false;
@@ -165,7 +165,7 @@ vis.binds.buzzhome.statusview = {
             var NotificationSeperatorLonger2 = $("#NotificationSeperatorLonger2");
 
 
-            if (IsContentOpenUser == false) {
+            if (IsContentOpenNotification == false) {
                 listUser.css("max-height", "0px");
                 listNotification.css("max-height", "500px");
                 NotificationSeperatorLonger1.css("width", "100%");
@@ -174,10 +174,10 @@ vis.binds.buzzhome.statusview = {
                 NotificationIcon.css("fill", "white");
                 NotificationBorder.css("background", "#a57c34");
                 UserIcon.css("fill", "#a57c34");
-                UserBorder.css("background", "#transparent");
+                UserBorder.css("background", "transparent");
 
-                IsContentOpenUser = true;
-                IsContentOpenNotification = false;
+                IsContentOpenUser = false;
+                IsContentOpenNotification = true;
             }
 
             else {
@@ -189,7 +189,7 @@ vis.binds.buzzhome.statusview = {
                 NotificationIcon.css("fill", "#a57c34");
                 NotificationBorder.css("background", "transparent");
                 UserIcon.css("fill", "#a57c34");
-                UserBorder.css("background", "#transparent");
+                UserBorder.css("background", "transparent");
 
                 IsContentOpenUser = false;
                 IsContentOpenNotification = false;
@@ -312,7 +312,7 @@ vis.binds.buzzhome.statusview = {
             '        <div id="NotificationSeperatorLonger2"> </div>' +
             '            <div id="ContentArea" class="gridcontent">' +
             '               <div id="listUser">' +
-            '                  <ul class="horizontal" style="margin-top:20px; margin-left:20px; margin-right:20px; margin-bottom:14px;">' +
+            '                  <ul class="horizontal" style="margin-top:20px; margin-left:20px; margin-right:0px; margin-bottom:14px;">' +
             '                     <li>' +
             '                        <div id="' + wid + 'Person1" class="personcontainer" style="margin-right: 20px;"><img class="personimage" src="widgets/buzzhome/img/persons/person1.png" alt="Person1"></div>' +
             '                   </li>' +

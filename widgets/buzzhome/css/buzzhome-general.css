@@ -106,7 +106,7 @@
             display: inline-block;
         }
 
-             .morebutton {
+        .morebutton {
             position: absolute;
             right: -4px;
             background: none;
@@ -114,6 +114,10 @@
             border:0;
             padding:0;
             bottom: -4px;
+        }
+
+        .morebutton:focus {
+            outline: none;
         }
 
          .buzzhome-moreLabel {

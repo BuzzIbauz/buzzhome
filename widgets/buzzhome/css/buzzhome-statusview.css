@@ -53,7 +53,7 @@
             font-family: "RobotoCondensed-Light";
             font-size: 9pt;
             position: relative;
-            top: 3px;
+            top: 1px;
         }
         
         .horizontal {
@@ -130,13 +130,13 @@
         }
 
         .personimage {
-            height:150px;
+            height:152px;
             width: auto;
         }
 
         .personcontainer {
-           height:150px; 
-           width: 150px;
+           height:152px; 
+           width: 152px;
            overflow: hidden;
         
         }
@@ -150,7 +150,11 @@
             border:0;
             padding:0;
         }
-        
+
+        .homebutton:focus {
+            outline: none;
+        }
+
         .buzzhome-HomeLabel {
             color: #a57c34;
             opacity: 0.08;
