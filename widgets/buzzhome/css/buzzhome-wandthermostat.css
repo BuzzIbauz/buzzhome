@@ -120,7 +120,7 @@
 	left:32px;
 	}
 
-#buzzhome-chosen {
+.buzzhome-chosen {
 	position:absolute;
 	z-index:1;
 	margin: 0 0 0 7px;
@@ -139,7 +139,7 @@
     font-size:15pt;
 	}
 
-#buzzhome-chosenValue {	
+.buzzhome-chosenValue {	
 	color:#ffffff;
 	position: absolute;
 	right:16px;

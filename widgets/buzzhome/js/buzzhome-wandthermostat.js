@@ -32,7 +32,7 @@
                 vis.states.bind(data.oid + '.val', function (e, newVal, oldVal) {
                     //console.log("value SetTemperature changed - old: " + oldVal + " newValue: "+ newVal);
                     data.value = newVal
-                    $('#buzzhome-SetTemperature').html(data.value + '&ordm;C');
+                    $('#' + wid + 'buzzhome-SetTemperature').html(data.value + '&ordm;C');
                     $("#" +  wid + "slider").slider('value', data.value)
 
                 });
@@ -104,20 +104,23 @@
             var $PrimaryColor = data.maincolor;
             var $invertColors = data.invertColors;
             var SliderContainerId = wid + "slider";
+            var SliderChoosenPosition = wid + "buzzhome-chosen";
+            var SliderChoosenValue = wid + "buzzhome-chosenValue";
+            var SetTemperatureContainer = wid + "buzzhome-SetTemperature";
 
 
 
 
 
             //HTML Zeichnen
-            vis.binds.buzzhome.wandthermostat.draw($div, $Title, $Actual, $Value, $Humidity, SliderContainerId);
+            vis.binds.buzzhome.wandthermostat.draw($div, $Title, $Actual, $Value, $Humidity, SliderContainerId, SliderChoosenPosition, SliderChoosenValue, SetTemperatureContainer);
 
             //Farben zuweisen
             vis.binds.buzzhome.wandthermostat.setHighlightColor($PrimaryColor, $invertColors, wid, SliderContainerId);
             //console.log($invertColors);
 
             // create slider
-            vis.binds.buzzhome.wandthermostat.createSlider($Value, data.oid, SliderContainerId);
+            vis.binds.buzzhome.wandthermostat.createSlider($Value, data.oid, SliderContainerId, SliderChoosenPosition, SliderChoosenValue);
 
             // update BatteryIndicator
             vis.binds.buzzhome.wandthermostat.updateBatteryStatus(data.battery);
@@ -131,10 +134,10 @@
 
         },
 
-        createSlider: function (slideAmount, dataoid, SliderContainerId) {
+        createSlider: function (slideAmount, dataoid, SliderContainerId, SliderChoosenPosition, SliderChoosenValue) {
 
-            var chosenPosition = $('#buzzhome-chosen');
-            var display = $('#buzzhome-chosenValue');
+            // var chosenPosition = $('#buzzhome-chosen');
+            // var display = $('#buzzhome-chosenValue');
 
 
 
@@ -146,15 +149,16 @@
                 value: slideAmount,
 
                 slide: function (event, ui) {
-                    chosenPosition.css("opacity", "1");
+                    $("#" + SliderChoosenPosition).css("opacity", "1");
 
-                    $('.ui-slider-handle').html(chosenPosition); //attach chosenPosition to sliderhandle
+                    $('#' + SliderContainerId +' .ui-slider-handle').html($("#" + SliderChoosenPosition)); //attach chosenPosition to sliderhandle
 
-                    display.html(ui.value);
+                    $("#" + SliderChoosenValue).html(ui.value);
                 },
                 stop: function (event, ui) {
-                    chosenPosition.css("opacity", "0");
+                    $("#" + SliderChoosenPosition).css("opacity", "0");
                     vis.setValue(dataoid, ui.value);
+                    console.log(dataoid + "value:" + ui.value);
                 }
             });
 
@@ -189,7 +193,7 @@
 
                 SetTemperature.css("color", "#FFFFFF");
 
-                $("#buzzhome-chosenValue").css("color", vis.binds.buzzhome.colorFunctions.getForegroundColor(PrimaryColor));
+                $("#"+wid+"buzzhome-chosenValue").css("color", vis.binds.buzzhome.colorFunctions.getForegroundColor(PrimaryColor));
 
                 for (var i = 0; i < len; i++) {
                     smallValues.eq(i).css("color", "#FFFFFF");
@@ -212,9 +216,9 @@
 
                 // Root.css("box-shadow", "0px 0px 15px" + BoxshadowColor);
 
-                $("#buzzhome-ChosenSVG").css("fill", Color2);
+                $("#"+wid+"buzzhome-ChosenSVG").css("fill", Color2);
 
-                $("#buzzhome-chosenValue").css("color", vis.binds.buzzhome.colorFunctions.getForegroundColor(PrimaryColor));
+                $("#"+wid+"buzzhome-chosenValue").css("color", vis.binds.buzzhome.colorFunctions.getForegroundColor(PrimaryColor));
 
                 $("#" + SliderContainerId + " .ui-slider-range").css("backgroundImage", "linear-gradient(" + Color2 + " 0%," + PrimaryColor + " 15%)");
 
@@ -286,11 +290,11 @@
 
         },
 
-        draw: function (container, title, actual, value, humidity, SliderContainerId) {
+        draw: function (container, title, actual, value, humidity, SliderContainerId, SliderChoosenPosition, SliderChoosenValue, SetTemperatureContainer) {
             //Hier wird das HTML zusammengebaut und an den Container übergeben
             var $SetTemperatureValueHtml = '<div id="buzzhome-SetTemperatureContainer">' +
                 '<span id="buzzhome-SetLabel" class="buzzhome-SetLabel">SET:</span>' +
-                '<span id="buzzhome-SetTemperature" class="buzzhome-SetTemperature">' + value + '&ordm;C</span>' +
+                '<span id="' + SetTemperatureContainer + '" class="buzzhome-SetTemperature">' + value + '&ordm;C</span>' +
                 '</div>';
 
             var $TitleHtml = '<span id="buzzhome-Title" class="buzzhome-TitleHigh">' + title + '</span>';
@@ -316,14 +320,14 @@
                 '<div id="buzzhome-SliderBackground"> </div>' +
 
 
-                '<div id="buzzhome-chosen">' +
+                '<div id="' + SliderChoosenPosition + '" class="buzzhome-chosen">' +
                 '<svg id="buzzhome-ChosenSVG" class="buzzhome-ChosenSVG" viewBox="0 0 36.154 44.077">' +
                 '<path d="M0,27.891V0l36.154,44.077L0,27.891z" />' +
                 '</svg>' +
 
                 '<div id="buzzhome-chosenBorder"></div>' +
 
-                '<span id="buzzhome-chosenValue"></span>' +
+                '<span id="'+ SliderChoosenValue +'"class="buzzhome-chosenValue"></span>' +
                 ' </div>' +
                 ' </div>'
 
