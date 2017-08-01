@@ -57,12 +57,20 @@ vis.binds.buzzhome.statusview = {
         if (data['oid-numberofnotifications']) {
             vis.states.bind(data['oid-numberofnotifications'] + '.val', function (e, newVal, oldVal) {
                 data.numberofnotifications = newVal;
+                 vis.binds.buzzhome.statusview.updateNumberOfNotifications(data.numberofnotifications);
             });
         }
 
         if (data['oid-notificationtext']) {
             vis.states.bind(data['oid-notificationtext'] + '.val', function (e, newVal, oldVal) {
                 data.notificationtext = newVal;
+            });
+        }
+
+        if (data['oid-attendance']) {
+            vis.states.bind(data['oid-attendance'] + '.val', function (e, newVal, oldVal) {
+                data.attendance = newVal;
+                vis.binds.buzzhome.statusview.updateAttendanceStatus(data.attendance, wid, IsContentOpenUser);
             });
         }
 
@@ -73,6 +81,7 @@ vis.binds.buzzhome.statusview = {
         if (data['oid-person2']) data.person2 = vis.states.attr(data['oid-person2'] + '.val');
         if (data['oid-person3']) data.person3 = vis.states.attr(data['oid-person3'] + '.val');
         if (data['oid-person4']) data.person4 = vis.states.attr(data['oid-person4'] + '.val');
+        if (data['oid-attendance']) data.attendance = vis.states.attr(data['oid-attendance'] + '.val');
 
         if (data['oid-numberofnotifications']) data.numberofnotifications = vis.states.attr(data['oid-numberofnotifications'] + '.val');
         if (data['oid-notificationtext']) data.notificationtext = vis.states.attr(data['oid-notificationtext'] + '.val');
@@ -95,7 +104,7 @@ vis.binds.buzzhome.statusview = {
 
         //HTML Zeichnen
 
-        vis.binds.buzzhome.statusview.draw($div, wid, title);
+        vis.binds.buzzhome.statusview.draw($div, wid, title, data.numberofnotifications);
 
 
         // update Persons attendence
@@ -108,6 +117,10 @@ vis.binds.buzzhome.statusview = {
         //Farben zuweisen
         // vis.binds.buzzhome.climateoverview.setHighlightColor($PrimaryColor, $invertColors, wid);
         //console.log($invertColors);
+
+        //attendance Status updaten:
+
+        vis.binds.buzzhome.statusview.updateAttendanceStatus(data.attendance, wid, IsContentOpenUser);
 
 
         $("#" + wid + "User").click(function () {
@@ -130,11 +143,15 @@ vis.binds.buzzhome.statusview = {
 
                 NotificationIcon.css("fill", "#a57c34");
                 NotificationBorder.css("background", "transparent");
-                UserIcon.css("fill", "white");
+                // UserIcon.css("fill", "white");
                 UserBorder.css("background", "#a57c34");
+
+
 
                 IsContentOpenUser = true;
                 IsContentOpenNotification = false;
+
+                vis.binds.buzzhome.statusview.updateAttendanceStatus(data.attendance, wid, IsContentOpenUser);
             }
 
             else {
@@ -145,11 +162,14 @@ vis.binds.buzzhome.statusview = {
 
                 NotificationIcon.css("fill", "#a57c34");
                 NotificationBorder.css("background", "transparent");
-                UserIcon.css("fill", "#a57c34");
+                // UserIcon.css("fill", "#a57c34");
                 UserBorder.css("background", "transparent");
 
                 IsContentOpenUser = false;
                 IsContentOpenNotification = false;
+
+                vis.binds.buzzhome.statusview.updateAttendanceStatus(data.attendance, wid, IsContentOpenUser);
+
             }
         });
 
@@ -173,11 +193,14 @@ vis.binds.buzzhome.statusview = {
 
                 NotificationIcon.css("fill", "white");
                 NotificationBorder.css("background", "#a57c34");
-                UserIcon.css("fill", "#a57c34");
+                // UserIcon.css("fill", "#a57c34");
                 UserBorder.css("background", "transparent");
+
 
                 IsContentOpenUser = false;
                 IsContentOpenNotification = true;
+
+                vis.binds.buzzhome.statusview.updateAttendanceStatus(data.attendance, wid, IsContentOpenUser);
             }
 
             else {
@@ -188,11 +211,14 @@ vis.binds.buzzhome.statusview = {
 
                 NotificationIcon.css("fill", "#a57c34");
                 NotificationBorder.css("background", "transparent");
-                UserIcon.css("fill", "#a57c34");
+                // UserIcon.css("fill", "#a57c34");
                 UserBorder.css("background", "transparent");
+
+
 
                 IsContentOpenUser = false;
                 IsContentOpenNotification = false;
+                vis.binds.buzzhome.statusview.updateAttendanceStatus(data.attendance, wid, IsContentOpenUser);
             }
 
 
@@ -206,6 +232,22 @@ vis.binds.buzzhome.statusview = {
     },
 
 
+    updateAttendanceStatus: function (attendance, wid, IsContentOpenUser) {
+        console.log(IsContentOpenUser);
+
+        if (attendance === false) {
+            $('#' + wid + 'buzzhome-UserIdicator').css("fill", "red");
+        }
+        else {
+            if (IsContentOpenUser === true) {
+                $('#' + wid + 'buzzhome-UserIdicator').css("fill", "white");
+            }
+            else {
+                $('#' + wid + 'buzzhome-UserIdicator').css("fill", "#a57c34");
+            }
+
+        }
+    },
 
     setHighlightColor: function (PrimaryColor, invertColors) {
 
@@ -275,7 +317,22 @@ vis.binds.buzzhome.statusview = {
 
     },
 
-    draw: function (container, wid, title) {
+    updateNumberOfNotifications: function (numberofnotifications) {
+
+        $("#numberofnotificationsLabel").html(numberofnotifications);
+
+        if (numberofnotifications == 0){
+             $("#numberofnotificationsLabel").css("opacity", 0);
+             $("#numberofnotificationsCircle").css("opacity", 0);
+        }
+        else{
+            $("#numberofnotificationsLabel").css("opacity", 1);
+             $("#numberofnotificationsCircle").css("opacity", 1);
+        }
+
+    },
+
+    draw: function (container, wid, title, numberofnotifications) {
         //Hier wird das HTML zusammengebaut und an den Container übergeben
 
         var $HomeButton = '<button id="' + wid + 'HomeButton" type="button" class="homebutton">' +
@@ -300,8 +357,8 @@ vis.binds.buzzhome.statusview = {
             '                           <path d="M1.988,0h20.024C23.11,0,24,0.89,24,1.988v14.024C24,17.11,23.11,18,22.012,18H15l-8,6l0-6H1.988C0.89,18,0,17.11,0,16.012V15h12v-2H0v-3h17V8H0V5h9V3H0V1.988C0,0.89,0.89,0,1.988,0z"' +
             '                           />' +
             '                       </svg>' +
-            '                  <div class="buzzhome-RedCircleContainer">' +
-            '                     <span class="buzzhome-NumberLabel">12</span>' +
+            '                  <div id="numberofnotificationsCircle" class="buzzhome-RedCircleContainer">' +
+            '                     <span id="numberofnotificationsLabel" class="buzzhome-NumberLabel">' + numberofnotifications + '</span>' +
             '                 </div>' +
             '            </div>' +
             '        </li>' +

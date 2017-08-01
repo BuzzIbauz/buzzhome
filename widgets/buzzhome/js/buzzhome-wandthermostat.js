@@ -41,7 +41,7 @@
             if (data['oid-humidity']) {
                 vis.states.bind(data['oid-humidity'] + '.val', function (e, newVal, oldVal) {
                     data.humidity = newVal;
-                    $('#humidity-value').html(data.humidity);
+                    $('#' + wid + '>humidity-value').html(data.humidity);
                     //console.log("value oid-humidity changed - old: " + oldVal + " newValue: "+ newVal);
                 });
             }
@@ -49,7 +49,7 @@
             if (data['oid-actual']) {
                 vis.states.bind(data['oid-actual'] + '.val', function (e, newVal, oldVal) {
                     data.actual = newVal;
-                    $('#buzzhome-TemperatureValue').html(Math.round(data.actual));
+                    $('#' + wid + '>buzzhome-TemperatureValue').html(Math.round(data.actual));
                     //console.log("value oid-actual changed - old: " + oldVal + " newValue: "+ newVal);
                 });
             }
@@ -73,7 +73,7 @@
             if (data['oid-battery']) {
                 vis.states.bind(data['oid-battery'] + '.val', function (e, newVal, oldVal) {
                     data.battery = newVal;
-                    vis.binds.buzzhome.wandthermostat.updateBatteryStatus(data.battery);
+                    vis.binds.buzzhome.wandthermostat.updateBatteryStatus(data.battery, wid);
                     //console.log("value oid-battery changed - old: " + oldVal + " newValue: "+ newVal);
                 });
             }
@@ -107,13 +107,14 @@
             var SliderChoosenPosition = wid + "buzzhome-chosen";
             var SliderChoosenValue = wid + "buzzhome-chosenValue";
             var SetTemperatureContainer = wid + "buzzhome-SetTemperature";
+            var BatteryIndicatorContainer = wid + "buzzhome-BatteryIndicator";
 
 
 
 
 
             //HTML Zeichnen
-            vis.binds.buzzhome.wandthermostat.draw($div, $Title, $Actual, $Value, $Humidity, SliderContainerId, SliderChoosenPosition, SliderChoosenValue, SetTemperatureContainer);
+            vis.binds.buzzhome.wandthermostat.draw($div, $Title, $Actual, $Value, $Humidity, SliderContainerId, SliderChoosenPosition, SliderChoosenValue, SetTemperatureContainer, BatteryIndicatorContainer);
 
             //Farben zuweisen
             vis.binds.buzzhome.wandthermostat.setHighlightColor($PrimaryColor, $invertColors, wid, SliderContainerId);
@@ -123,7 +124,7 @@
             vis.binds.buzzhome.wandthermostat.createSlider($Value, data.oid, SliderContainerId, SliderChoosenPosition, SliderChoosenValue);
 
             // update BatteryIndicator
-            vis.binds.buzzhome.wandthermostat.updateBatteryStatus(data.battery);
+            vis.binds.buzzhome.wandthermostat.updateBatteryStatus(data.battery, wid);
 
             // update WindowState
             vis.binds.buzzhome.wandthermostat.updateWindowStatus(data.windowstate);
@@ -234,14 +235,14 @@
 
         },
 
-        updateBatteryStatus: function (batteryStatus) {
+        updateBatteryStatus: function (batteryStatus, wid) {
             if (batteryStatus == true) {
 
-                $('#buzzhome-BatteryIndicator').css('opacity', '1');
+                $('#'+ wid +'buzzhome-BatteryIndicator').css('opacity', '1');
             }
             else {
 
-                $('#buzzhome-BatteryIndicator').css('opacity', '0');
+                $('#'+ wid +'buzzhome-BatteryIndicator').css('opacity', '0');
             }
         },
 
@@ -290,7 +291,7 @@
 
         },
 
-        draw: function (container, title, actual, value, humidity, SliderContainerId, SliderChoosenPosition, SliderChoosenValue, SetTemperatureContainer) {
+        draw: function (container, title, actual, value, humidity, SliderContainerId, SliderChoosenPosition, SliderChoosenValue, SetTemperatureContainer, BatteryIndicatorContainer) {
             //Hier wird das HTML zusammengebaut und an den Container übergeben
             var $SetTemperatureValueHtml = '<div id="buzzhome-SetTemperatureContainer">' +
                 '<span id="buzzhome-SetLabel" class="buzzhome-SetLabel">SET:</span>' +
@@ -331,7 +332,7 @@
                 ' </div>' +
                 ' </div>'
 
-            var $BatteryIndicatorHtml = '<svg id="buzzhome-BatteryIndicator" viewBox="0 0 28 28">' +
+            var $BatteryIndicatorHtml = '<svg id="'+ BatteryIndicatorContainer +'" viewBox="0 0 28 28">' +
                 '<path d="M27,8v12H4v-3H1v-6h3V8h17.8L21,10H6v8h14l3-8l0.8-2H27z" />' +
                 '</svg>'
 
